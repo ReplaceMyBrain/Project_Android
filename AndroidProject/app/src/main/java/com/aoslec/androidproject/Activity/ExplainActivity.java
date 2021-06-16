@@ -127,7 +127,7 @@ public class ExplainActivity extends AppCompatActivity {
     View.OnClickListener main =new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(ExplainActivity.this, LoginActivity.class);
+            Intent intent = new Intent(ExplainActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
         }

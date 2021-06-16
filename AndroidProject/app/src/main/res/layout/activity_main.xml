@@ -8,35 +8,12 @@
     tools:context=".Activity.MainActivity"
     android:background="@color/white">
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/Main_tabLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:tabIconTint="@color/black"
-        app:tabIndicatorColor="@color/color6"
-        app:tabTextColor="#000000">
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="WEATHER" />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="FAVORITE" />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="SETTING" />
-
-    </com.google.android.material.tabs.TabLayout>
-
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="9"
         >
+
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/Main_viewPager2"
             android:layout_width="match_parent"
@@ -44,5 +21,38 @@
             />
 
     </FrameLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="1">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/Main_tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            app:tabIndicatorGravity="top"
+            app:tabIconTint="@color/color6"
+            app:tabIndicatorColor="@color/color6"
+            app:tabTextColor="#000000">
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/ic_weather" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/ic_clothes" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:icon="@drawable/ic_setting" />
+
+        </com.google.android.material.tabs.TabLayout>
+    </RelativeLayout>
 
 </LinearLayout>
