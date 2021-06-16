@@ -1,11 +1,18 @@
 package com.aoslec.androidproject.Activity;
 
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.aoslec.androidproject.Adapter.MainTabAdapter;
 import com.aoslec.androidproject.R;
@@ -71,5 +78,32 @@ public class MainActivity extends AppCompatActivity {
             actionBar.setTitle(title);
         }
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflate = getMenuInflater();
+        inflate.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    //메뉴 선택시
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+
+            case R.id.location:
+
+                new AlertDialog.Builder(MainActivity.this)
+                        .setTitle("지도를 누르면 나의 위치 찾기 완료!")
+                        .setPositiveButton("닫기", null)
+                        .show();
+        }
+
+        return true;
+    }
+
+
 
 }
