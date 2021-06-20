@@ -1,2 +1,0 @@
-include ':app'
-rootProject.name = "android_practice8_location_FusedLocationProviderClient"
