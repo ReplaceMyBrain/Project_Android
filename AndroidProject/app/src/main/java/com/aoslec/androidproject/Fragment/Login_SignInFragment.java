@@ -10,13 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.aoslec.androidproject.Activity.MainActivity;
 import com.aoslec.androidproject.R;
-import com.aoslec.androidproject.ShareBar.ShareBar;
-
-import java.util.ArrayList;
 
 public class Login_SignInFragment extends Fragment {
 

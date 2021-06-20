@@ -13,6 +13,6 @@ public class AdActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ad);
 
-        setTitle("광고요청");
+        setTitle(getResources().getString(R.string.ad_title));
     }
 }

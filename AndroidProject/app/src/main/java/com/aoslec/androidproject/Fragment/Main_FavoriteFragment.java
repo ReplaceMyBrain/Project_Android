@@ -29,7 +29,7 @@ public class Main_FavoriteFragment extends Fragment {
         //액션바 타이틀 변경
         FragmentActivity activity = getActivity();
         if (activity != null) {
-            ((MainActivity) activity).setActionBarTitle("관심지역");
+            ((MainActivity) activity).setActionBarTitle(getResources().getString(R.string.favorite_title));
         }
     }
 

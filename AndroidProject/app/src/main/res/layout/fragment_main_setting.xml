@@ -55,7 +55,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="일반설정"
+            android:text="@string/normal_tittle"
             android:layout_marginLeft="15dp"
             android:textSize="20dp"
             android:gravity="center|left"
@@ -83,7 +83,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="체감온도 옷설정"
+            android:text="@string/clothes_title"
             android:layout_marginLeft="15dp"
             android:textSize="20dp"
             android:gravity="center|left"
@@ -111,7 +111,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="광고 요청"
+            android:text="@string/ad_title"
             android:layout_marginLeft="15dp"
             android:textSize="20dp"
             android:gravity="center|left"
@@ -139,7 +139,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="광고관리(관리자)"
+            android:text="@string/admin_title"
             android:layout_marginLeft="15dp"
             android:textSize="20dp"
             android:gravity="center|left"

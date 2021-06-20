@@ -34,6 +34,7 @@
         <activity
             android:name=".Activity.ExplainActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            androiTTd:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".Activity.MainActivity" />
     </application>
 

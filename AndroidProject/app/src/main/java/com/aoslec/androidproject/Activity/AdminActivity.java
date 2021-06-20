@@ -13,6 +13,6 @@ public class AdminActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
 
-        setTitle("관리자");
+        setTitle(getResources().getString(R.string.admin_title));
     }
 }

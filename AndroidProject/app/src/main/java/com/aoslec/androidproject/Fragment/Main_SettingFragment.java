@@ -50,7 +50,7 @@ public class Main_SettingFragment extends Fragment {
         //액션바 타이틀 변경
         FragmentActivity activity = getActivity();
         if (activity != null) {
-            ((MainActivity) activity).setActionBarTitle("설정");
+            ((MainActivity) activity).setActionBarTitle(getResources().getString(R.string.setting_title));
         }
     }
 
