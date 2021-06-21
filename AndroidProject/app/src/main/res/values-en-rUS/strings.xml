@@ -17,4 +17,7 @@
     <string name="ad_title">Ad request</string>
     <string name="admin_title">Ad Administrator</string>
     <string name="language">Language</string>
+    <string name="none">none</string>
+    <string name="color">color</string>
+    <string name="theme">theme</string>
 </resources>

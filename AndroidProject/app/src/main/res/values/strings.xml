@@ -24,6 +24,10 @@
 
     <!--메인메뉴 - 설정탭 - 일반설정 -->
     <string name="normal_tittle">일반설정</string>
+    <string name="theme">테마</string>
+    <string name="none">무채색</string>
+    <string name="color">채색</string>
+
     <string name="language">언어</string>
 
     <!--메인메뉴 - 설정탭 - 온도별 옷 설정 -->

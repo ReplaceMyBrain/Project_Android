@@ -14,8 +14,7 @@ import com.aoslec.androidproject.SaveSharedPreferences.SaveSharedPreferences;
 
 public class NormalSettingActivity extends AppCompatActivity {
 
-    TextView kor,eng;
-    Button cNone, cColor;
+    TextView kor,eng,cNone,cColor;
 
     LanguageManager languageManager = new LanguageManager(this);
     SaveSharedPreferences saveSharedPreferences = new SaveSharedPreferences();
@@ -35,7 +34,6 @@ public class NormalSettingActivity extends AppCompatActivity {
         eng.setOnClickListener(language);
         cNone.setOnClickListener(clothesColor);
         cColor.setOnClickListener(clothesColor);
-
 
         setTitle(getResources().getString(R.string.normal_tittle));
     }
@@ -81,6 +79,5 @@ public class NormalSettingActivity extends AppCompatActivity {
             }
         }
     };
-
 
 }
