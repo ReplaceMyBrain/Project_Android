@@ -36,6 +36,13 @@ public class NormalSettingActivity extends AppCompatActivity {
         cColor.setOnClickListener(clothesColor);
 
         setTitle(getResources().getString(R.string.normal_tittle));
+        
+        textColor();
+    }
+    
+    //설정한 색 설정
+    private void textColor() {
+
     }
 
     //언어설정
@@ -64,6 +71,7 @@ public class NormalSettingActivity extends AppCompatActivity {
         }
     };
 
+    //옷 테마설정
     View.OnClickListener clothesColor = new View.OnClickListener() {
         @Override
         public void onClick(View v) {

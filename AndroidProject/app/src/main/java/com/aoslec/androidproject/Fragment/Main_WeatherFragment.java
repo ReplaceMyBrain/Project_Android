@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.aoslec.androidproject.Activity.MainActivity;
 import com.aoslec.androidproject.R;
+import com.aoslec.androidproject.SQLite.ClothesSQLite;
 
 
 public class Main_WeatherFragment extends Fragment {
@@ -31,5 +32,9 @@ public class Main_WeatherFragment extends Fragment {
         if (activity != null) {
             ((MainActivity) activity).setActionBarTitle(getResources().getString(R.string.weather_title));
         }
+
+
+
+
     }
 }

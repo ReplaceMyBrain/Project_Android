@@ -7,11 +7,10 @@
     android:layout_height="match_parent"
     tools:context=".Activity.ClothesActivity">
 
-    <ImageView
-        android:id="@+id/clothes_img"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/ic_menu_location"
+    <ListView
+        android:id="@+id/clothes_listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         />
 
 </LinearLayout>
