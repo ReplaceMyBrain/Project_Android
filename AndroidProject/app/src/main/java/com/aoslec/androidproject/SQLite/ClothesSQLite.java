@@ -22,26 +22,24 @@ public class ClothesSQLite  extends SQLiteOpenHelper {
         db.execSQL(query);
 
         try {
-            String query1 = "INSERT INTO clothes(Temperature, item1, item2, item3, item4, item5) VALUES('-10이하', 'item1.png','item2.png','item3.png','item4.png','item5.png');";
+            String query1 = "INSERT INTO clothes(Temperature, item1, item2, item3, item4) VALUES('-5º 이하', '10.png','11.png','14.png','15.png');";
             db.execSQL(query1);
-            Log.v("ggg","insert1");
-            String query2 = "INSERT INTO clothes(Temperature, item1, item2, item3, item4, item5) VALUES('-5~0도', 'item1.png','item2.png','item3.png','item4.png','item5.png');";
+            String query2 = "INSERT INTO clothes(Temperature, item1, item2, item3, item4, item5) VALUES('-5º ~ 0º','9.png','10.png','11.png','14.png','15.png');";
             db.execSQL(query2);
-            Log.v("ggg","insert2");
-            String query3 = "INSERT INTO clothes(Temperature, item1, item2, item3, item4, item5) VALUES('0도~5도', 'item1.png','item2.png','item3.png','item4.png','item5.png');";
+            String query3 = "INSERT INTO clothes(Temperature, item1, item2, item3, item4, item5) VALUES('0º ~ 5º','7.png','9.png','10.png','12.png','14.png');";
             db.execSQL(query3);
             Log.v("ggg","insert3");
-            String query4 = "INSERT INTO clothes(Temperature, item1, item2, item3, item4, item5) VALUES('5도~10도', 'item1.png','item2.png','item3.png','item4.png','item5.png');";
+            String query4 = "INSERT INTO clothes(Temperature, item1, item2, item3, item4, item5) VALUES('5º ~ 10º', '5.png','6.png','8.png','7.png','12.png');";
             db.execSQL(query4);
-            String query5 = "INSERT INTO clothes(Temperature, item1, item2, item3, item4, item5) VALUES('10도~15도', 'item1.png','item2.png','item3.png','item4.png','item5.png');";
+            String query5 = "INSERT INTO clothes(Temperature, item1, item2, item3, item4) VALUES('10º ~ 15º', '5.png','6.png','8.png','12.png');";
             db.execSQL(query5);
-            String query6 = "INSERT INTO clothes(Temperature, item1, item2, item3, item4, item5) VALUES('15도~20도', 'item1.png','item2.png','item3.png','item4.png','item5.png');";
+            String query6 = "INSERT INTO clothes(Temperature, item1, item2, item3) VALUES('15º ~ 20º', '3.png','4.png','12.png');";
             db.execSQL(query6);
-            String query7 = "INSERT INTO clothes(Temperature, item1, item2, item3, item4, item5) VALUES('20도~25도', 'item1.png','item2.png','item3.png','item4.png','item5.png');";
+            String query7 = "INSERT INTO clothes(Temperature, item1, item2, item3, item4, item5) VALUES('20º ~ 25º', '2.png','3.png','4.png','12.png','13.png');";
             db.execSQL(query7);
-            String query8 = "INSERT INTO clothes(Temperature, item1, item2, item3, item4, item5) VALUES('25도~30도', 'item1.png','item2.png','item3.png','item4.png','item5.png');";
+            String query8 = "INSERT INTO clothes(Temperature, item1, item2, item3) VALUES('25º ~ 30º', '2.png','12.png','13.png');";
             db.execSQL(query8);
-            String query9 = "INSERT INTO clothes(Temperature, item1, item2, item3, item4, item5) VALUES('30도이상', 'item1.png','item2.png','item3.png','item4.png','item5.png');";
+            String query9 = "INSERT INTO clothes(Temperature, item1, item2, item3) VALUES('30º 이상', '1.png','2.png','13.png');";
             db.execSQL(query9);
             Log.v("ggg","insert9");
             close();

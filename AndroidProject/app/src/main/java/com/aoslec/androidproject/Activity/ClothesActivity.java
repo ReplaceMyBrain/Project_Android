@@ -2,16 +2,20 @@ package com.aoslec.androidproject.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.aoslec.androidproject.Adapter.ClothesChoiceAdapter;
 import com.aoslec.androidproject.Adapter.ClothesSettingAdapter;
 import com.aoslec.androidproject.Bean.ClothesBean;
 import com.aoslec.androidproject.Bean.WeatherBean;
@@ -53,7 +57,6 @@ public class ClothesActivity extends AppCompatActivity {
     private void SQLite() {
         SQLiteDatabase DB;
 
-        Log.v("ggg","SQLite");
         try {
             clothes.clear();
             DB=clothesSQLite.getReadableDatabase();
@@ -68,8 +71,6 @@ public class ClothesActivity extends AppCompatActivity {
                 String item4 = cursor.getString(4);
                 String item5 = cursor.getString(5);
 
-                Log.v("ggg","SQLite" + temperature + item1 + item2);
-
                 ClothesBean clothesBean = new ClothesBean(temperature,item1,item2,item3,item4,item5);
                 clothes.add(clothesBean);
             }
@@ -78,18 +79,45 @@ public class ClothesActivity extends AppCompatActivity {
 
         }catch (Exception e){
             e.printStackTrace();
-            Log.v("ggg","불러오기 실패함");
         }
 
         try{
-            Log.v("ggg","아답터");
             adapter = new ClothesSettingAdapter(ClothesActivity.this,R.layout.listview_clothes, clothes);
             listView.setAdapter(adapter);
+            listView.setOnItemClickListener(onItemClickListener);
+
 
         }catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
-}
+
+    AdapterView.OnItemClickListener onItemClickListener = new AdapterView.OnItemClickListener() {
+        Intent intent = null;
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            Log.v("ggg", "onItemClick 시작");
+
+            intent = new Intent(ClothesActivity.this, ClothesChoiceActivity.class);
+
+            try {
+                intent.putExtra("temp", clothes.get(position).getTemperature());
+                intent.putExtra("item1", clothes.get(position).getItem1());
+                intent.putExtra("item2", clothes.get(position).getItem2());
+                intent.putExtra("item3", clothes.get(position).getItem3());
+                intent.putExtra("item4", clothes.get(position).getItem4());
+                intent.putExtra("item5", clothes.get(position).getItem5());
+                startActivity(intent);
+
+                Log.v("ggg", "성공");
+            }catch (Exception e){
+                e.printStackTrace();
+                Log.v("ggg", "실패함");
+                
+            }
+
+        }
+    };
+
+}//
