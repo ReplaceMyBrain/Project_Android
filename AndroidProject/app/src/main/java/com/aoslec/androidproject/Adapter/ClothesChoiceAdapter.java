@@ -55,8 +55,6 @@ public class ClothesChoiceAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        Log.v("ggg", "아탑터 겟뷰 시작");
-
         url = saveSharedPreferences.getUrl(mContext);
         clothesColor = saveSharedPreferences.getClothesColor(mContext);
 
@@ -64,15 +62,19 @@ public class ClothesChoiceAdapter extends BaseAdapter {
             convertView = inflater.inflate(this.layout, parent, false);
         }
 
-        TextView cb = convertView.findViewById(R.id.Choice_cb);
         ImageView iv = convertView.findViewById(R.id.Choice_iv);
-
-        cb.setText(data.get(position).getItem());
+        ImageView ivc = convertView.findViewById(R.id.Choice_ivC);
 
         Glide.with(convertView)
                 .load(url+clothesColor+data.get(position).getItem())
                 .error("")
                 .into(iv);
+
+        if (data.get(position).isSelect() == true){
+            ivc.setVisibility(View.VISIBLE);
+        }else {
+            ivc.setVisibility(View.INVISIBLE);
+        }
 
         return convertView;
 

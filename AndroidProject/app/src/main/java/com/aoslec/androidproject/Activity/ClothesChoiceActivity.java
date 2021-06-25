@@ -39,10 +39,27 @@ public class ClothesChoiceActivity extends AppCompatActivity {
 
         clothesSQLite = new ClothesSQLite(ClothesChoiceActivity.this);
 
-        //새로 빈은 만들어서 모든 아이템을 보여준다.
+        reset = findViewById(R.id.ClothesChoice_reset);
+        ok = findViewById(R.id.ClothesChoice_ok);
+
+        //리스트뷰씀
+        adapter = new ClothesChoiceAdapter(this,R.layout.gridview_clothes_choice,ChoiceBean);
+        gridView = findViewById(R.id.ClothesChoice_gv);
+        gridView.setAdapter(adapter);
+
+        //클릭이벤트
+        ok.setOnClickListener(clickOk);
+        gridView.setOnItemClickListener(onItemClickListener);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        //새로 빈은 만들어서 모든 아이템을 저장.
         ChoiceBean.clear();
-        for(int i = 1; i<=15; i++){
-            ChoiceBean choiceBean = new ChoiceBean(i + ".png");
+        for (int i = 1; i <= 15; i++) {
+            ChoiceBean choiceBean = new ChoiceBean(i + ".png", false);
             ChoiceBean.add(choiceBean);
         }
 
@@ -57,50 +74,58 @@ public class ClothesChoiceActivity extends AppCompatActivity {
         choice.add(intent.getStringExtra("item5"));
 
         //null값 삭제함
-        for(int i=1; i<choice.size(); i++){
+        for (int i = 1; i < choice.size(); i++) {
+            choice.remove("null");
             choice.remove(null);
         }
 
+        //받아온 값과 불러온 값을 비교하여 select를 true로 바꿔준다.
+        for (int i = 0; i < ChoiceBean.size(); i++) {
+            for (int j = 0; j < choice.size(); j++) {
+                if (ChoiceBean.get(i).getItem().equals(choice.get(j))) {
+                    Log.v("ggg", ChoiceBean.get(i).getItem() + "비교할꺼야" + choice.get(j));
+                    ChoiceBean.get(i).setSelect(true);
+                }
+            }
+        }
 
-        reset = findViewById(R.id.ClothesChoice_reset);
-        ok = findViewById(R.id.ClothesChoice_ok);
-
-        ok.setOnClickListener(clickOk);
-
-        adapter = new ClothesChoiceAdapter(this,R.layout.gridview_clothes_choice,ChoiceBean);
-        gridView = findViewById(R.id.ClothesChoice_gv);
-        gridView.setAdapter(adapter);
- //       gridView.setOnItemClickListener(onItemClickListener);
-
-
-
+        adapter.notifyDataSetChanged();
     }
-//    AdapterView.OnItemClickListener onItemClickListener = new AdapterView.OnItemClickListener() {
-//        @Override
-//        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//
-//            if(gridView.isItemChecked(position)) {
-//                gridView.setItemChecked(position,false);
-//                Toast.makeText(ClothesChoiceActivity.this, ChoiceBean.get(position).getItem() + "취소합니다", Toast.LENGTH_SHORT).show();
-//            }else {
-//                gridView.setItemChecked(position,true);
-//                Toast.makeText(ClothesChoiceActivity.this, ChoiceBean.get(position).getItem() + "선택되었습니다", Toast.LENGTH_SHORT).show();
-//
-//            }
-//        }
-//    };
+
+    AdapterView.OnItemClickListener onItemClickListener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            if (ChoiceBean.get(position).isSelect() == false){
+                ChoiceBean.get(position).setSelect(true);
+                choice.add(ChoiceBean.get(position).getItem());
+                Log.v("ggg", "true다!"+ChoiceBean.get(position).getItem());
+                adapter.notifyDataSetChanged();
+
+            }else {
+                ChoiceBean.get(position).setSelect(false);
+                choice.remove(ChoiceBean.get(position).getItem());
+                adapter.notifyDataSetChanged();
+                Log.v("ggg", "false다!");
+            }
+        }
+    };
 
     View.OnClickListener clickOk = new View.OnClickListener() {
         SQLiteDatabase DB;
 
         @Override
         public void onClick(View v) {
+            //앞에 null값은 다 삭제시킴
+            for (int i = 1; i < choice.size(); i++) {
+                choice.remove("null");
+                choice.remove(null);
+            }
+            //뒤에 null값 채움
             if (choice.size()<=6){
                 for(int i = choice.size(); i<=5; i++){
                     choice.add(null);
                 }
             }
-
             cTemp = choice.get(0);
             cItem1 = choice.get(1);
             cItem2 = choice.get(2);
@@ -108,26 +133,30 @@ public class ClothesChoiceActivity extends AppCompatActivity {
             cItem4 = choice.get(4);
             cItem5 = choice.get(5);
 
-            if(choice.size()>6){
-                Toast.makeText(ClothesChoiceActivity.this,"기온별 옷차림은 최대 5개입니다.",Toast.LENGTH_SHORT).show();
-            }else {
+            for(int i=0; i<choice.size(); i++) {
+
+                Log.v("ggg", "사이즈는?" + choice.size() + "값은? " + i + "번째" + choice.get(i));
+
+            }
+
                 try {
-                    Log.v("ggg", "try들어옴?");
+
+                    if(choice.size()>6){
+                        Toast.makeText(ClothesChoiceActivity.this,"기온별 옷차림은 최대 5개입니다.",Toast.LENGTH_SHORT).show();
+                    }else {
                     DB = clothesSQLite.getWritableDatabase();
-                    Log.v("ggg", "여기도함??");
                     String query = "UPDATE clothes SET item1 = '" + cItem1 + "', item2 = '" + cItem2 + "', item3 = '" + cItem3 + "', item4 = '" + cItem4 + "', item5 = '" + cItem5 + "' WHERE Temperature = '" + cTemp + "';";
-                    Log.v("ggg", "업데이트완료  " + query);
                     DB.execSQL(query);
                     clothesSQLite.close();
+
+                    Intent intent = new Intent(ClothesChoiceActivity.this, ClothesActivity.class);
+                    startActivity(intent);
+                    }
 
                 } catch (Exception e) {
                     e.printStackTrace();
                     Log.v("ggg", "실패");
                 }
-            }
-
-                Intent intent = new Intent(ClothesChoiceActivity.this, ClothesActivity.class);
-                startActivity(intent);
 
         }
     };

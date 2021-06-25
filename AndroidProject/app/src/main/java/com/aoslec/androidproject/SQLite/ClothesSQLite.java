@@ -28,7 +28,6 @@ public class ClothesSQLite  extends SQLiteOpenHelper {
             db.execSQL(query2);
             String query3 = "INSERT INTO clothes(Temperature, item1, item2, item3, item4, item5) VALUES('0º ~ 5º','7.png','9.png','10.png','12.png','14.png');";
             db.execSQL(query3);
-            Log.v("ggg","insert3");
             String query4 = "INSERT INTO clothes(Temperature, item1, item2, item3, item4, item5) VALUES('5º ~ 10º', '5.png','6.png','8.png','7.png','12.png');";
             db.execSQL(query4);
             String query5 = "INSERT INTO clothes(Temperature, item1, item2, item3, item4) VALUES('10º ~ 15º', '5.png','6.png','8.png','12.png');";
@@ -41,9 +40,7 @@ public class ClothesSQLite  extends SQLiteOpenHelper {
             db.execSQL(query8);
             String query9 = "INSERT INTO clothes(Temperature, item1, item2, item3) VALUES('30º 이상', '1.png','2.png','13.png');";
             db.execSQL(query9);
-            Log.v("ggg","insert9");
             close();
-            Log.v("ggg","insert");
 
         }catch (Exception e){
             e.printStackTrace();

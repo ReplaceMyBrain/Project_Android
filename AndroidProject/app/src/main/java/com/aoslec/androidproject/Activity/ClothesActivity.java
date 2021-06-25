@@ -19,6 +19,7 @@ import com.aoslec.androidproject.Adapter.ClothesChoiceAdapter;
 import com.aoslec.androidproject.Adapter.ClothesSettingAdapter;
 import com.aoslec.androidproject.Bean.ClothesBean;
 import com.aoslec.androidproject.Bean.WeatherBean;
+import com.aoslec.androidproject.Fragment.Main_SettingFragment;
 import com.aoslec.androidproject.R;
 import com.aoslec.androidproject.SQLite.ClothesSQLite;
 import com.aoslec.androidproject.SaveSharedPreferences.SaveSharedPreferences;
@@ -114,10 +115,18 @@ public class ClothesActivity extends AppCompatActivity {
             }catch (Exception e){
                 e.printStackTrace();
                 Log.v("ggg", "실패함");
-                
+
             }
 
         }
     };
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        startActivity(new Intent(getApplicationContext(), Main_SettingFragment.class));
+        overridePendingTransition(0,0);
+
+    }
 }//

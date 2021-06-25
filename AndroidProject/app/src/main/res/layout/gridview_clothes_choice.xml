@@ -5,18 +5,23 @@
     android:layout_height="match_parent"
     android:id="@+id/Choice_LL">
 
-    <CheckBox
-        android:id="@+id/Choice_cb"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:checked="false"
-        />
-
-    <ImageView
-        android:id="@+id/Choice_iv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        />
+        android:layout_height="match_parent"
+        >
+        <ImageView
+            android:id="@+id/Choice_iv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+        <ImageView
+            android:id="@+id/Choice_ivC"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_check"
+            android:background="#6D000000"
+            android:visibility="invisible"
+            />
+    </FrameLayout>
 
 </LinearLayout>
