@@ -90,7 +90,7 @@ public class ClothesChoiceActivity extends AppCompatActivity {
                 }
             }
         }
-        setTitle(choice.get(0) + getResources().getString(R.string.clothes_title));
+        setTitle(choice.get(0) + getResources().getString(R.string.ClothesChoice));
         adapter.notifyDataSetChanged();
     }
 

@@ -18,7 +18,7 @@ public class SaveSharedPreferences {
 
     //값을 불러올때 사용 url 본인것으로 바꾸면 됨.
     public static String getUrl(Context ctx) {
-        return getSharedPreferences(ctx).getString(url, "http://192.168.43.46:8080/project/");
+        return getSharedPreferences(ctx).getString(url, "http://172.30.1.11:8080/project/");
     }
 
     public static void setUrl(Context ctx, String sUrl) {

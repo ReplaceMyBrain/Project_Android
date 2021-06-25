@@ -41,6 +41,7 @@
 
 
     <!--추가 String -->
+    <string name="ClothesChoice">옷차림</string>
     <string name="ClothesChoiceMax">기온별 옷차림은 최대 5개입니다.</string>
     <string name="ClothesChoiceMin">기온별 옷차림은 최소 1개 이상입니다.</string>
 

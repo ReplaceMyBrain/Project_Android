@@ -20,6 +20,7 @@
     <string name="none">none</string>
     <string name="color">color</string>
     <string name="theme">theme</string>
+    <string name="ClothesChoice">Clothing</string>
     <string name="ClothesChoiceMax">There are up to 5</string>
     <string name="ClothesChoiceMin">There are at least 1</string>
 </resources>

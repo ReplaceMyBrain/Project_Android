@@ -1,7 +1,5 @@
 package com.aoslec.androidproject.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -9,24 +7,16 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
 
-import com.aoslec.androidproject.Adapter.ClothesChoiceAdapter;
 import com.aoslec.androidproject.Adapter.ClothesSettingAdapter;
 import com.aoslec.androidproject.Bean.ClothesBean;
-import com.aoslec.androidproject.Bean.WeatherBean;
-import com.aoslec.androidproject.Fragment.Main_SettingFragment;
 import com.aoslec.androidproject.R;
 import com.aoslec.androidproject.SQLite.ClothesSQLite;
-import com.aoslec.androidproject.SaveSharedPreferences.SaveSharedPreferences;
-import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ClothesActivity extends AppCompatActivity {
 
