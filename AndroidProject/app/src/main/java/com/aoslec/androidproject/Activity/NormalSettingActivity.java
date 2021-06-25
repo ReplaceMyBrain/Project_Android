@@ -1,6 +1,7 @@
 package com.aoslec.androidproject.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -30,6 +31,7 @@ public class NormalSettingActivity extends AppCompatActivity {
         cNone = findViewById(R.id.NS_cNone);
         cColor = findViewById(R.id.NS_cColor);
 
+        //버튼
         kor.setOnClickListener(language);
         eng.setOnClickListener(language);
         cNone.setOnClickListener(clothesColor);
@@ -37,11 +39,33 @@ public class NormalSettingActivity extends AppCompatActivity {
 
         setTitle(getResources().getString(R.string.normal_tittle));
         
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         textColor();
     }
-    
+
     //설정한 색 설정
     private void textColor() {
+
+        if(saveSharedPreferences.getLangMethod(NormalSettingActivity.this).equals("ko")){
+            kor.setTextColor(ContextCompat.getColor(NormalSettingActivity.this, R.color.color6));
+            eng.setTextColor(ContextCompat.getColor(NormalSettingActivity.this, R.color.black));
+        }else if(saveSharedPreferences.getLangMethod(NormalSettingActivity.this).equals("en")){
+            kor.setTextColor(ContextCompat.getColor(NormalSettingActivity.this, R.color.black));
+            eng.setTextColor(ContextCompat.getColor(NormalSettingActivity.this, R.color.color6));
+        }
+
+        if(saveSharedPreferences.getClothesColor(NormalSettingActivity.this).equals("color/")){
+            cNone.setTextColor(ContextCompat.getColor(NormalSettingActivity.this, R.color.black));
+            cColor.setTextColor(ContextCompat.getColor(NormalSettingActivity.this, R.color.color6));
+        }else if(saveSharedPreferences.getClothesColor(NormalSettingActivity.this).equals("none/")){
+            cNone.setTextColor(ContextCompat.getColor(NormalSettingActivity.this, R.color.color6));
+            cColor.setTextColor(ContextCompat.getColor(NormalSettingActivity.this, R.color.black));
+        }
 
     }
 
@@ -78,10 +102,14 @@ public class NormalSettingActivity extends AppCompatActivity {
             switch (v.getId()){
                 case R.id.NS_cNone:
                     saveSharedPreferences.setClothesColor(NormalSettingActivity.this, "none/");
+                    cNone.setTextColor(ContextCompat.getColor(NormalSettingActivity.this, R.color.color6));
+                    cColor.setTextColor(ContextCompat.getColor(NormalSettingActivity.this, R.color.black));
                     break;
 
                 case R.id.NS_cColor:
                     saveSharedPreferences.setClothesColor(NormalSettingActivity.this, "color/");
+                    cNone.setTextColor(ContextCompat.getColor(NormalSettingActivity.this, R.color.black));
+                    cColor.setTextColor(ContextCompat.getColor(NormalSettingActivity.this, R.color.color6));
                     break;
 
             }

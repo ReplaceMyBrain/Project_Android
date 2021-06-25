@@ -1,12 +1,15 @@
 package com.aoslec.androidproject.Activity;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -27,10 +30,10 @@ public class ClothesChoiceActivity extends AppCompatActivity {
     ClothesChoiceAdapter adapter = null;
     GridView gridView = null;
 
-    TextView reset,ok;
+    MenuItem reset, ok;
     ClothesSQLite clothesSQLite;
 
-    String cTemp,cItem1,cItem2,cItem3,cItem4,cItem5;
+    String cTemp, cItem1, cItem2, cItem3, cItem4, cItem5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,16 +42,15 @@ public class ClothesChoiceActivity extends AppCompatActivity {
 
         clothesSQLite = new ClothesSQLite(ClothesChoiceActivity.this);
 
-        reset = findViewById(R.id.ClothesChoice_reset);
-        ok = findViewById(R.id.ClothesChoice_ok);
+        reset = findViewById(R.id.menu_reset);
+        ok = findViewById(R.id.menu_update);
 
         //리스트뷰씀
-        adapter = new ClothesChoiceAdapter(this,R.layout.gridview_clothes_choice,ChoiceBean);
+        adapter = new ClothesChoiceAdapter(this, R.layout.gridview_clothes_choice, ChoiceBean);
         gridView = findViewById(R.id.ClothesChoice_gv);
         gridView.setAdapter(adapter);
 
         //클릭이벤트
-        ok.setOnClickListener(clickOk);
         gridView.setOnItemClickListener(onItemClickListener);
     }
 
@@ -88,20 +90,139 @@ public class ClothesChoiceActivity extends AppCompatActivity {
                 }
             }
         }
-
+        setTitle(choice.get(0) + getResources().getString(R.string.clothes_title));
         adapter.notifyDataSetChanged();
     }
 
+    //메뉴 만들기
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflate = getMenuInflater();
+        inflate.inflate(R.menu.clothes_choice_menu, menu);
+        return true;
+    }
+
+
+    //메뉴클릭시
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        SQLiteDatabase DB;
+        String query = "";
+
+        switch (item.getItemId()) {
+
+            case R.id.menu_reset:
+
+                try {
+                    DB = clothesSQLite.getWritableDatabase();
+                    Log.v("ggg", "초기화 +" + choice.get(0));
+
+                    switch (choice.get(0)) {
+                        case "-5º ▼":
+                            query = "UPDATE clothes SET item1 ='10.png',item2 ='11.png',item3 ='14.png',item4 ='15.png',item5 ='null' WHERE Temperature = '"+choice.get(0)+"';";
+                            break;
+                        case "-5º ~ 0º":
+                            query = "UPDATE clothes SET item1 ='9.png',item2 ='10.png',item3 ='11.png',item4 ='14.png',item5 ='15.png' WHERE Temperature ='"+choice.get(0)+"';";
+                            break;
+                        case "0º ~ 5º":
+                            query = "UPDATE clothes SET item1 ='7.png',item2 ='9.png',item3 ='10.png',item4 ='12.png',item5 ='14.png' WHERE Temperature ='"+choice.get(0)+"';";
+                            break;
+                        case "5º ~ 10º":
+                            query = "UPDATE clothes SET item1 ='5.png',item2 ='6.png',item3 ='8.png',item4 ='7.png',item5 ='12.png' WHERE Temperature ='"+choice.get(0)+"';";
+                            break;
+                        case "10º ~ 15º":
+                            query = "UPDATE clothes SET item1 ='5.png',item2 ='6.png',item3 ='8.png',item4 ='12.png',item5 ='null' WHERE Temperature ='"+choice.get(0)+"';";
+                            break;
+                        case "15º ~ 20º":
+                            query = "UPDATE clothes SET item1 ='3.png',item2 ='4.png',item3 ='12.png',item4 ='null',item5 ='null' WHERE Temperature ='"+choice.get(0)+"';";
+                            break;
+                        case "20º ~ 25º":
+                            query = "UPDATE clothes SET item1 ='2.png',item2 ='3.png',item3 ='4.png',item4 ='12.png',item5 ='13.png' WHERE Temperature ='"+choice.get(0)+"';";
+                            break;
+                        case "25º ~ 30º":
+                            query = "UPDATE clothes SET item1 ='2.png',item2 ='12.png',item3 ='13.png',item4 ='null',item5 ='null' WHERE Temperature ='"+choice.get(0)+"';";
+                            break;
+                        case "30º ▲":
+                            query = "UPDATE clothes SET item1 ='1.png',item2 ='2.png',item3 ='13.png',item4 ='null',item5 ='null' WHERE Temperature ='"+choice.get(0)+"';";
+                            break;
+                    }
+                    DB.execSQL(query);
+                    clothesSQLite.close();
+
+                    Intent intent = new Intent(ClothesChoiceActivity.this, ClothesActivity.class);
+                    startActivity(intent);
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Log.v("ggg", "실패");
+                }
+                break;
+
+            case R.id.menu_update:
+
+                //전체 null값은 다 삭제시킴
+                for (int i = 1; i < choice.size(); i++) {
+                    choice.remove("null");
+                    choice.remove(null);
+                }
+
+                //뒤에 null값 채움 (오류때문에)
+                if (choice.size() <= 6) {
+                    for (int i = choice.size(); i <= 5; i++) {
+                        choice.add(null);
+                    }
+                }
+                cTemp = choice.get(0);
+                cItem1 = choice.get(1);
+                cItem2 = choice.get(2);
+                cItem3 = choice.get(3);
+                cItem4 = choice.get(4);
+                cItem5 = choice.get(5);
+
+                for (int i = 0; i < choice.size(); i++) {
+
+                    Log.v("ggg", "사이즈는?" + choice.size() + "값은? " + i + "번째" + choice.get(i));
+
+                }
+
+                try {
+
+                    if (choice.size() > 6) {
+                        Toast.makeText(ClothesChoiceActivity.this, getResources().getString(R.string.ClothesChoiceMax), Toast.LENGTH_SHORT).show();
+                    } else if (choice.get(1) == null || choice.get(1) == "null") {
+                        Toast.makeText(ClothesChoiceActivity.this, getResources().getString(R.string.ClothesChoiceMin), Toast.LENGTH_SHORT).show();
+                    } else {
+                        DB = clothesSQLite.getWritableDatabase();
+                        query = "UPDATE clothes SET item1 = '" + cItem1 + "', item2 = '" + cItem2 + "', item3 = '" + cItem3 + "', item4 = '" + cItem4 + "', item5 = '" + cItem5 + "' WHERE Temperature = '" + cTemp + "';";
+                        DB.execSQL(query);
+                        clothesSQLite.close();
+
+                        Intent intent = new Intent(ClothesChoiceActivity.this, ClothesActivity.class);
+                        startActivity(intent);
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Log.v("ggg", "실패");
+                }
+                break;
+        }
+
+        return true;
+    }
+
+    //아이템 체크
     AdapterView.OnItemClickListener onItemClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            if (ChoiceBean.get(position).isSelect() == false){
+            if (ChoiceBean.get(position).isSelect() == false) {
                 ChoiceBean.get(position).setSelect(true);
                 choice.add(ChoiceBean.get(position).getItem());
-                Log.v("ggg", "true다!"+ChoiceBean.get(position).getItem());
+                Log.v("ggg", "true다!" + ChoiceBean.get(position).getItem());
                 adapter.notifyDataSetChanged();
 
-            }else {
+            } else {
                 ChoiceBean.get(position).setSelect(false);
                 choice.remove(ChoiceBean.get(position).getItem());
                 adapter.notifyDataSetChanged();
@@ -109,56 +230,4 @@ public class ClothesChoiceActivity extends AppCompatActivity {
             }
         }
     };
-
-    View.OnClickListener clickOk = new View.OnClickListener() {
-        SQLiteDatabase DB;
-
-        @Override
-        public void onClick(View v) {
-            //앞에 null값은 다 삭제시킴
-            for (int i = 1; i < choice.size(); i++) {
-                choice.remove("null");
-                choice.remove(null);
-            }
-            //뒤에 null값 채움
-            if (choice.size()<=6){
-                for(int i = choice.size(); i<=5; i++){
-                    choice.add(null);
-                }
-            }
-            cTemp = choice.get(0);
-            cItem1 = choice.get(1);
-            cItem2 = choice.get(2);
-            cItem3 = choice.get(3);
-            cItem4 = choice.get(4);
-            cItem5 = choice.get(5);
-
-            for(int i=0; i<choice.size(); i++) {
-
-                Log.v("ggg", "사이즈는?" + choice.size() + "값은? " + i + "번째" + choice.get(i));
-
-            }
-
-                try {
-
-                    if(choice.size()>6){
-                        Toast.makeText(ClothesChoiceActivity.this,"기온별 옷차림은 최대 5개입니다.",Toast.LENGTH_SHORT).show();
-                    }else {
-                    DB = clothesSQLite.getWritableDatabase();
-                    String query = "UPDATE clothes SET item1 = '" + cItem1 + "', item2 = '" + cItem2 + "', item3 = '" + cItem3 + "', item4 = '" + cItem4 + "', item5 = '" + cItem5 + "' WHERE Temperature = '" + cTemp + "';";
-                    DB.execSQL(query);
-                    clothesSQLite.close();
-
-                    Intent intent = new Intent(ClothesChoiceActivity.this, ClothesActivity.class);
-                    startActivity(intent);
-                    }
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Log.v("ggg", "실패");
-                }
-
-        }
-    };
-
 }

@@ -95,31 +95,31 @@ public class ClothesSettingAdapter extends BaseAdapter {
                 .into(item5);
 
         if(position == 0) {
-            cardView.setCardBackgroundColor(ContextCompat.getColor(mContext, R.color.color5));
+            cardView.setCardBackgroundColor(ContextCompat.getColor(mContext, R.color.color11));
         }
         if(position == 1) {
-            cardView.setCardBackgroundColor(ContextCompat.getColor(mContext, R.color.color6));
+            cardView.setCardBackgroundColor(ContextCompat.getColor(mContext, R.color.color10));
         }
         if(position == 2) {
-            cardView.setCardBackgroundColor(ContextCompat.getColor(mContext, R.color.color7));
+            cardView.setCardBackgroundColor(ContextCompat.getColor(mContext, R.color.color9));
         }
         if(position == 3) {
             cardView.setCardBackgroundColor(ContextCompat.getColor(mContext, R.color.color8));
         }
         if(position == 4) {
-            cardView.setCardBackgroundColor(ContextCompat.getColor(mContext, R.color.color4));
+            cardView.setCardBackgroundColor(ContextCompat.getColor(mContext, R.color.color7));
         }
         if(position == 5) {
-            cardView.setCardBackgroundColor(ContextCompat.getColor(mContext, R.color.color3));
+            cardView.setCardBackgroundColor(ContextCompat.getColor(mContext, R.color.color4));
         }
         if(position == 6) {
-            cardView.setCardBackgroundColor(ContextCompat.getColor(mContext, R.color.color2));
+            cardView.setCardBackgroundColor(ContextCompat.getColor(mContext, R.color.color3));
         }
         if(position == 7) {
-            cardView.setCardBackgroundColor(ContextCompat.getColor(mContext, R.color.color1));
+            cardView.setCardBackgroundColor(ContextCompat.getColor(mContext, R.color.color2));
         }
         if(position == 8) {
-            cardView.setCardBackgroundColor(ContextCompat.getColor(mContext, R.color.color9));
+            cardView.setCardBackgroundColor(ContextCompat.getColor(mContext, R.color.color1));
         }
 
         return convertView;

@@ -22,7 +22,7 @@ public class ClothesSQLite  extends SQLiteOpenHelper {
         db.execSQL(query);
 
         try {
-            String query1 = "INSERT INTO clothes(Temperature, item1, item2, item3, item4) VALUES('-5º 이하', '10.png','11.png','14.png','15.png');";
+            String query1 = "INSERT INTO clothes(Temperature, item1, item2, item3, item4) VALUES('-5º ▼', '10.png','11.png','14.png','15.png');";
             db.execSQL(query1);
             String query2 = "INSERT INTO clothes(Temperature, item1, item2, item3, item4, item5) VALUES('-5º ~ 0º','9.png','10.png','11.png','14.png','15.png');";
             db.execSQL(query2);
@@ -38,7 +38,7 @@ public class ClothesSQLite  extends SQLiteOpenHelper {
             db.execSQL(query7);
             String query8 = "INSERT INTO clothes(Temperature, item1, item2, item3) VALUES('25º ~ 30º', '2.png','12.png','13.png');";
             db.execSQL(query8);
-            String query9 = "INSERT INTO clothes(Temperature, item1, item2, item3) VALUES('30º 이상', '1.png','2.png','13.png');";
+            String query9 = "INSERT INTO clothes(Temperature, item1, item2, item3) VALUES('30º ▲', '1.png','2.png','13.png');";
             db.execSQL(query9);
             close();
 

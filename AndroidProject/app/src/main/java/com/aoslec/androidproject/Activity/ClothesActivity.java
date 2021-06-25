@@ -125,7 +125,7 @@ public class ClothesActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
 
-        startActivity(new Intent(getApplicationContext(), Main_SettingFragment.class));
+        startActivity(new Intent(getApplicationContext(), MainActivity.class));
         overridePendingTransition(0,0);
 
     }
