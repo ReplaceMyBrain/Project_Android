@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/findAccountTabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="10dp"
+            android:background="@null">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <ImageView
+                        android:id="@+id/myUnderImg3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/findPwTextView"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="73dp"
+                        android:visibility="gone"
+                        app:srcCompat="@drawable/profile_image" />
+
+                    <ImageView
+                        android:id="@+id/myUnderImg2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/findAccountTextView"
+                        android:layout_marginLeft="52.5dp"
+                        android:visibility="visible"
+                        />
+
+                    <TextView
+                        android:id="@+id/findAccountTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="60dp"
+                        android:layout_marginBottom="5dp"
+                        android:foregroundGravity="center"
+                        android:gravity="center"
+                        android:text="계정 찾기"
+                        android:textColor="#442C2E"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/findPwTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="70dp"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center"
+                        android:text="비밀번호찾기"
+                        android:textColor="#442C2E"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/findIdContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/findAccountTabLayout"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:id="@+id/findid_phone"
+                    android:layout_width="100dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="40dp"
+                    android:text="휴대전화"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/findid_phonebutton"
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="92dp"
+                    android:layout_toRightOf="@id/findid_phone_edittext"
+                    android:text="확인"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/findid_phone_edittext"
+                    android:layout_width="245dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="92dp"
+                    android:ems="10"
+                    android:hint="   휴대전화 번호"
+                    android:inputType="textPersonName" />
+
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/findPwContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/findAccountTabLayout"
+            android:orientation="vertical"
+            android:visibility="gone">
+            <RadioGroup
+                android:id="@+id/pwFindRadioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="visible">
+                <RadioButton
+                    android:id="@+id/findpw_emill_radiobutton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="회원정보에 등록한 이메일로 인증"
+                    android:textSize="18sp" />
+                <RadioButton
+                    android:id="@+id/findpw_phone_radiobutton"
+                    android:layout_width="303dp"
+                    android:layout_height="28dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="회원정보에 등록한 휴대전화로 인증"
+                    android:textSize="18sp" />
+            </RadioGroup>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="40dp"
+                >
+                <TextView
+                    android:id="@+id/findpw_email_phone_check"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="계정을 확인해 주세요"
+                    android:textColor="#FF002E"
+                    android:visibility="invisible"
+                    />
+                <LinearLayout
+                    android:id="@+id/findpw_email_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="visible"
+                    >
+                    <TextView
+                        android:id="@+id/findpw_id_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:layout_marginTop="25dp"
+                        android:text="계정"
+                        android:textColor="#000000"
+                        android:textSize="18sp"
+                        />
+                    <EditText
+                        android:id="@+id/findpw_id_phone_edittext"
+                        android:layout_width="250dp"
+                        android:layout_height="40dp"
+                        android:ems="10"
+                        android:hapticFeedbackEnabled="true"
+                        android:hint="계정 입력"
+                        android:inputType="textPersonName"
+                        android:paddingLeft="10dp"
+                        />
+                    <LinearLayout
+                        android:id="@+id/findpw_phone_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+                        <TextView
+                            android:id="@+id/findpw_phone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="휴대전화"
+                            android:textColor="#000000"
+                            android:textSize="18sp"
+                            />
+                        <EditText
+                            android:id="@+id/findpw_phone_edittext"
+                            android:layout_width="250dp"
+                            android:layout_height="40dp"
+                            android:ems="10"
+                            android:enabled="true"
+                            android:hint="휴대전화 번호"
+                            android:inputType="textPersonName"
+                            android:paddingLeft="10dp"
+                            />
+                    </LinearLayout>
+                    <Button
+                        android:id="@+id/findpw_phone_button"
+                        android:layout_width="120dp"
+                        android:layout_height="40dp"
+                        android:enabled="true"
+                        android:text="인증번호 받기"
+                        android:textSize="12sp"
+                        />
+                    <TextView
+                        android:id="@+id/findpw_pin_check"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="인증번호가 틀렸습니다."
+                        android:textColor="#FF002E"
+                        android:visibility="invisible"
+                        />
+                    <TextView
+                        android:id="@+id/findIdMobileCount"
+                        android:layout_width="55dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:text="00:00"
+                        android:visibility="gone"
+                        android:textSize="18sp"
+                        />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+                        <EditText
+                            android:id="@+id/findpw_phone_pin"
+                            android:layout_width="150dp"
+                            android:layout_height="40dp"
+                            android:ems="10"
+                            android:enabled="false"
+                            android:layout_marginTop="5dp"
+                            android:hint="인증번호 입력"
+                            android:inputType="textPersonName"
+                            android:paddingLeft="10dp"
+                            />
+                        <Button
+                            android:id="@+id/findpw_pin_button"
+                            android:layout_width="65dp"
+                            android:layout_height="40dp"
+                            android:enabled="false"
+                            android:text="확인"
+                            android:textSize="12sp"
+                            />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!--<FrameLayout
+                android:id="@+id/findpw_email_pramelayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+
+                    <TextView
+                        android:id="@+id/findpw_id_check"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="계정을 확인해 주세요"
+                        android:textColor="#FF002E"
+                        android:visibility="invisible"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="40dp"
+                        android:layout_marginTop="35dp"
+                        android:layout_marginEnd="10dp"
+                        android:text="계정"
+                        android:textColor="#000000"
+                        android:textSize="18sp"
+                        />
+
+                    <EditText
+                        android:id="@+id/findpw_id_email_edittext"
+                        android:layout_width="300dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginEnd="40dp"
+                        android:ems="10"
+                        android:hint="계정 입력"
+                        android:inputType="textPersonName"
+                        android:paddingLeft="10dp"
+                        />
+
+                    <Button
+                        android:id="@+id/findpw_email_button"
+                        android:layout_width="120dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="20dp"
+                        android:enabled="true"
+                        android:text="인증번호 받기"
+                        android:textSize="12sp"
+                        />
+                    <EditText
+                        android:id="@+id/findpw_id_email_pin"
+                        android:layout_width="200dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="20dp"
+                        android:ems="10"
+                        android:enabled="false"
+                        android:hint="인증번호 입력"
+                        android:inputType="textPersonName"
+                        android:paddingLeft="10dp"
+                        />
+                    <TextView
+                        android:id="@+id/findpw_id_email_check"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="인증번호가 틀렸습니다."
+                        android:textColor="#FF002E"
+                        android:visibility="invisible"
+                        />
+
+                    <Button
+                        android:id="@+id/findpw_id_email_button"
+                        android:layout_width="65dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:enabled="false"
+                        android:text="확인"
+                        android:textSize="12sp"
+                        />
+                </LinearLayout>
+            </FrameLayout>-->
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

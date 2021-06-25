@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AndroidProject</string>
+    <string name="explain_title1">How\'s the weather today?</string>
+    <string name="explain_title2">What should I wear?</string>
+    <string name="explain_title3">Can I have my own region?</string>
+    <string name="explain_contents1">We\'ll give you weather information right away!</string>
+    <string name="explain_contents2">We recommend clothes suitable for the weather!</string>
+    <string name="explain_contents3">hearts to get your own region!</string>
+    <string name="weather_title">Weather Information</string>
+    <string name="favorite_title">Areas of Interest</string>
+    <string name="setting_title">Setting</string>
+    <string name="signIn_title">SignIn</string>
+    <string name="signUp_title">SignUp</string>
+    <string name="normal_tittle">Normal Setting</string>
+    <string name="clothes_title">Clothing Setting</string>
+    <string name="ad_title">Ad request</string>
+    <string name="admin_title">Ad Administrator</string>
+    <string name="language">Language</string>
+    <string name="none">none</string>
+    <string name="color">color</string>
+    <string name="theme">theme</string>
+    <string name="main_recommend">Clothes Recommendation</string>
+    <string name="main_hour">Hourly Weather</string>
+    <string name="main_day">Daily Weather</string>
+    <string name="ClothesChoice">Clothing</string>
+    <string name="ClothesChoiceMax">There are up to 5</string>
+    <string name="ClothesChoiceMin">There are at least 1</string>
+</resources>

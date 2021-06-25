@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.aoslec.androidproject">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <permission
+        android:name="com.aoslec.androidproject.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.aoslec.androidproject.permission.MAPS_RECEIVE" />
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
+    <application
+        android:name=".KakaoSetting.GlobalApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AndroidProject"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".Activity.NormalSettingActivity" />
+        <activity android:name=".Activity.ClothesChoiceActivity"></activity>
+        <activity android:name=".Activity.ClothesActivity" />
+        <activity android:name=".AdActivity.AdUpdateActivity" />
+        <activity android:name=".AdActivity.AdViewActivity" />
+        <activity android:name=".AdActivity.AdPaymentActicity" />
+        <activity android:name=".AdActivity.AdActivity" />
+        <activity android:name=".Activity.MyUpdateActivity" />
+        <activity android:name=".Activity.MyPageActivity" />
+        <activity android:name=".Activity.SignInActivity" />
+        <activity android:name=".Activity.GPSActivity" />
+        <activity android:name=".GoogleMap.MapActivity" />
+        <activity android:name=".Activity.PayActivity" />
+        <activity android:name=".Activity.IdPwActivity" />
+        <activity android:name=".Activity.SignupActivity" />
+        <activity android:name=".Activity.SetNewPwActivity" />
+
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="@string/kakao_app_key" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCHy_pJSkuFE3UVPpb0kDS5AQIysmji-p4" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity
+            android:name=".Activity.IntroActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+
+                <!-- <data -->
+                <!-- android:host="oauth" -->
+                <!-- android:scheme="kakao8f4b4037c9a1029da55cfd56d5ff446f" /> -->
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Activity.ExplainActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".Activity.MainActivity" />
+
+        <uses-library android:name="com.google.android.maps" />
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+    </application>
+
+</manifest>

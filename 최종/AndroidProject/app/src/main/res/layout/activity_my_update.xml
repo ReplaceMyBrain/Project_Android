@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activity.MyUpdateActivity">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="개인정보 변경"
+        android:textSize="30dp"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/black"
+        />
+    <ListView
+        android:id="@+id/lv_custom_myupdate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="비밀번호 변경"
+        android:textSize="30dp"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/black"
+        />
+    <EditText
+        android:id="@+id/et_pw_myupdate"
+        android:hint="현 비밀번호를 입력하세요."
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        />
+    <EditText
+        android:id="@+id/et_newpw1_myupdate"
+        android:hint="새 비밀번호를 입력하세요."
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="영문/숫자/특수문자 2가지 이상 조합 (8~20자)"
+        />
+    <EditText
+        android:id="@+id/et_newpw2_myupdate"
+        android:hint="새 비밀번호를 한번 더 확인해주세요."
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="확인을 위해서 새 비밀번호를 다시 입력해주세요."
+        />
+    <Button
+        android:id="@+id/btn_changepw_myupdate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ok"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="회원 탈퇴"
+        android:textSize="30dp"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/black"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="회원정보 삭제를 원하신다면 아래 버튼을 클릭해주세요."
+        />
+    <Button
+        android:id="@+id/btn_signout_myupdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="회원탈퇴"
+        />
+</LinearLayout>

@@ -1,0 +1,192 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AdActivity.AdUpdateActivity"
+    android:padding="30dp"
+    android:gravity="center">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            tools:ignore="WebViewLayout">
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                >
+                <WebView
+                    android:id="@+id/register_wv_update"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="@drawable/round"
+                    android:src="@drawable/ad"
+                    android:clickable="true"
+                    />
+                <ImageView
+                    android:id="@+id/register_iv_update"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="@drawable/round"
+                    />
+            </FrameLayout>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="광고명"
+                android:textSize="25dp" />
+
+            <EditText
+                android:id="@+id/register_etTitle_update"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:hint="광고명을 입력해주세요."
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:textSize="20dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="URL"
+                android:textSize="25dp" />
+
+            <EditText
+                android:id="@+id/register_etUrl_update"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:hint="광고 URL를 입력해주세요."
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:textSize="20dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="지역"
+                android:textSize="25dp" />
+
+            <EditText
+                android:id="@+id/register_etLocation_update"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:hint="광고 URL를 입력해주세요."
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:textSize="20dp" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/register_btn_ad_indate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="개월 수"
+                android:textSize="25dp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RadioGroup
+                    android:id="@+id/register_radio_update"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/register_rbtn1_update"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="1개월 / 10000원"
+                        android:textSize="20dp" />
+
+                    <RadioButton
+                        android:id="@+id/register_rbtn2_update"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="2개월 / 20000원"
+                        android:textSize="20dp" />
+
+                    <RadioButton
+                        android:id="@+id/register_rbtn3_update"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="3개월 / 30000원"
+                        android:textSize="20dp" />
+
+                </RadioGroup>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/register_btnRegister_update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:background="@drawable/button"
+            android:text="결제 및 등록요청"
+            android:textSize="20dp" />
+    </LinearLayout>
+
+</ScrollView>

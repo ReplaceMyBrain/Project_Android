@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:id="@+id/tv_title_custom_b"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="기본 정보"
+            android:textSize="25dp"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:id="@+id/tv_title2_custom_b"
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="이름"
+                android:textSize="18dp"
+                />
+            <LinearLayout
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:layout_weight="6"
+                android:orientation="vertical"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+                    <LinearLayout
+                        android:layout_width="0px"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="6"
+                        android:orientation="vertical"
+                        >
+                        <TextView
+                            android:id="@+id/tv_content_custom_b"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="이름"
+                            android:textSize="18dp"
+                            />
+                        <TextView
+                            android:id="@+id/tv_1_custom_b"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textSize="18dp"
+                            />
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btn_open_custom_b"
+                        android:layout_width="0px"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="button"
+                        />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btn_change_custom_b"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="" />
+
+                <TextView
+                    android:id="@+id/tv_2_custom_b"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

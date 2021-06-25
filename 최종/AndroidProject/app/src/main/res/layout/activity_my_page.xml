@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.MyPageActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_margin="10dp"
+            android:layout_marginBottom="5dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                >
+                <FrameLayout
+                    android:id="@+id/layout_icon_mypage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:ignore="WebViewLayout">
+                    <ImageView
+                        android:id="@+id/iv_icon_maypage"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/kakao_default_profile_image"
+                        />
+                </FrameLayout>
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_name_mypage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:gravity="center"
+                android:text="name"
+                android:textColor="#000000"
+                android:textSize="26dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|center"
+                android:layout_marginRight="10dp"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="다른 고객님이라면,"
+                    android:textColor="#000000"
+                    android:textSize="13dp" />
+                <TextView
+                    android:id="@+id/tv_logout_mypage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="logout"
+                    android:textColor="#00BCD4"
+                    android:textSize="12dp" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <LinearLayout
+                android:id="@+id/ll_now_mypage"
+                android:orientation="vertical"
+                android:layout_width="0px"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="게시중"
+                    />
+                <TextView
+                    android:id="@+id/tv_count_now_mypage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_wait_mypage"
+                android:orientation="vertical"
+                android:layout_width="0px"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="대기중"
+                    />
+                <TextView
+                    android:id="@+id/tv_count_wait_mypage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_history_mypage"
+                android:orientation="vertical"
+                android:layout_width="0px"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="과거 내역"
+                    />
+                <TextView
+                    android:id="@+id/tv_count_history_mypage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_cancel_mypage"
+                android:layout_width="0px"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="취소내역"
+                    />
+                <TextView
+                    android:id="@+id/tv_count_cancel_mypage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/black"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textSize="20dp"
+            android:text="회원정보"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/linear1_tv1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="고객명"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/linear1_tv2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="비밀번호"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/linear1_tv3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="이메일"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/linear1_tv4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="연락처"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/linear1_tv5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="이메일"
+                    android:visibility="gone"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/linear1_tv6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="연락처"
+                    android:visibility="gone"
+                    android:textSize="15dp" />
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:layout_weight="6">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginLeft="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/linear2_tv1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="고객명"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*********"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/linear2_tv2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="이메일"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/linear2_tv3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="연락처"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/linear2_tv5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="연락처"
+                        android:visibility="gone"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/linear2_tv6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="이메일"
+                        android:visibility="gone"
+                        android:textSize="15dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:gravity="right">
+
+                    <TextView
+                        android:id="@+id/linear2_tv_link"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="정보 변경하기 >"
+                        android:textColor="@color/color5" />
+                </LinearLayout>
+            </FrameLayout>
+        </LinearLayout>
+    </LinearLayout>
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/pager_mypage"
+        android:layout_gravity="top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
