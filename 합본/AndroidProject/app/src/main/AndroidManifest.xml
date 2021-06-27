@@ -35,22 +35,30 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidProject"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.NormalSettingActivity" />
-        <activity android:name=".Activity.ClothesChoiceActivity"></activity>
+        <activity android:name=".Activity.AdActivity"/>
+        <activity android:name=".Activity.AdminActivity"/>
+        <activity android:name=".Activity.AdminApproveSelectAd"/>
+        <activity android:name=".Activity.AdminSelectAd" />
+        <activity android:name=".Activity.AdPaymentActicity" />
+        <activity android:name=".Activity.AdUpdateActivity" />
+        <activity android:name=".Activity.AdViewActivity" />
         <activity android:name=".Activity.ClothesActivity" />
-        <activity android:name=".AdActivity.AdUpdateActivity" />
-        <activity android:name=".AdActivity.AdViewActivity" />
-        <activity android:name=".AdActivity.AdPaymentActicity" />
-        <activity android:name=".AdActivity.AdActivity" />
-        <activity android:name=".Activity.MyUpdateActivity" />
-        <activity android:name=".Activity.MyPageActivity" />
-        <activity android:name=".Activity.SignInActivity" />
+        <activity android:name=".Activity.ClothesChoiceActivity" />
+        <activity
+            android:name=".Activity.ExplainActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".Activity.GPSActivity" />
-        <activity android:name=".GoogleMap.MapActivity" />
-        <activity android:name=".Activity.PayActivity" />
         <activity android:name=".Activity.IdPwActivity" />
-        <activity android:name=".Activity.SignupActivity" />
+        <activity android:name=".Activity.MainActivity" />
+        <activity android:name=".Activity.MyPageActivity" />
+        <activity android:name=".Activity.MyUpdateActivity" />
+        <activity android:name=".Activity.NormalSettingActivity" />
+        <activity android:name=".Activity.PayActivity" />
         <activity android:name=".Activity.SetNewPwActivity" />
+        <activity android:name=".Activity.SignInActivity" />
+        <activity android:name=".Activity.SignupActivity" />
+
+        <activity android:name=".GoogleMap.MapActivity" />
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"
@@ -75,10 +83,7 @@
                 <!-- android:scheme="kakao8f4b4037c9a1029da55cfd56d5ff446f" /> -->
             </intent-filter>
         </activity>
-        <activity
-            android:name=".Activity.ExplainActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".Activity.MainActivity" />
+
 
         <uses-library android:name="com.google.android.maps" />
         <uses-library

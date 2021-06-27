@@ -1,5 +1,6 @@
-package com.aoslec.androidproject.AdActivity;
+package com.aoslec.androidproject.Activity;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -11,13 +12,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.aoslec.androidproject.NetworkTask.AdPayment_NetworkTask;
 import com.aoslec.androidproject.R;
 import com.aoslec.androidproject.Share.ShareVar;
 
-public class AdViewActivity extends AppCompatActivity {
+public class AdViewActivity extends Activity {
 
     String type, ad_id, payment_id, ad_image, ad_location, ad_title, ad_url, ad_indate, ad_outdate, ad_price;
 

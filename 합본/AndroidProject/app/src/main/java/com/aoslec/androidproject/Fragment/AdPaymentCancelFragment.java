@@ -10,7 +10,7 @@ import android.widget.ListView;
 
 import androidx.fragment.app.Fragment;
 
-import com.aoslec.androidproject.AdActivity.AdViewActivity;
+import com.aoslec.androidproject.Activity.AdViewActivity;
 import com.aoslec.androidproject.Adapter.Ad_PaymentAdapter;
 import com.aoslec.androidproject.Bean.Ad_PaymentBean;
 import com.aoslec.androidproject.NetworkTask.AdPayment_NetworkTask;

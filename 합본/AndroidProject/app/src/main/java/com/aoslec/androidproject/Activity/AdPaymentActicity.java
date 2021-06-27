@@ -1,10 +1,13 @@
-package com.aoslec.androidproject.AdActivity;
+package com.aoslec.androidproject.Activity;
 
+import android.app.Activity;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
@@ -24,6 +27,9 @@ public class AdPaymentActicity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ad_payment);
 
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
+
         tabLayout = findViewById(R.id.tablayout_ad_payment);
         tabLayout.addTab(tabLayout.newTab().setText("게시중 광고"));
         tabLayout.addTab(tabLayout.newTab().setText("대기중"));
@@ -36,6 +42,7 @@ public class AdPaymentActicity extends AppCompatActivity {
         tabindex = intent.getIntExtra("tabindex",0);
 
         viewPager = findViewById(R.id.pager_ad_payment);
+
         PagerAdapter pagerAdapter = new AdPaymentTabAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
 
         viewPager.setAdapter(pagerAdapter);

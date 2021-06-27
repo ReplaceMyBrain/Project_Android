@@ -224,5 +224,10 @@ public class NetworkTask extends AsyncTask<Integer,String,Object> {
         return formattedTime;
     }
 
+    // -------------------관리자 페이지 부분 ---------------
+
+
+
+
 }
 

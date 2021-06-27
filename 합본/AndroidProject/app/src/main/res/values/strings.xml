@@ -1,61 +1,70 @@
 <resources>
-    <string name="app_name">AndroidProject</string>
     <!--api key-->
     <string name="kakao_app_key" translatable="false">8f4b4037c9a1029da55cfd56d5ff446f</string>
     <string name="kakaopay_app_key" translatable="false">8f4b4037c9a1029da55cfd56d5ff446f</string>
     <string name="google_login_key" translatable="false">AIzaSyDF7zu10q9mWVw9GiEg7ZsIF70DiVagko8</string>
 
+    <string name="app_name">AndroidProject</string>
 
     <!--팁창-->
-    <string name="explain_title1">오늘날씨 어때요?</string>
-    <string name="explain_title2">무슨 옷을 입을까요?</string>
-    <string name="explain_title3">나만의 지역을 가질수 있나요?</string>
-    <string name="explain_contents1">날씨 정보를 바로 알려드립니다!</string>
-    <string name="explain_contents2">날씨에 알맞는 옷을 추천해드립니다!</string>
-    <string name="explain_contents3">하트를 눌러 나만의 지역을수 있습니다!</string>
+    <string name="explain_title1">How\'s the weather today?</string>
+    <string name="explain_title2">What should I wear?</string>
+    <string name="explain_title3">Can I have my own region?</string>
+    <string name="explain_contents1">We\'ll give you weather information right away!</string>
+    <string name="explain_contents2">We recommend clothes suitable for the weather!</string>
+    <string name="explain_contents3">hearts to get your own region!</string>
 
     <!--메인메뉴 - 날씨탭 -->
-    <string name="weather_title">날씨정보</string>
+    <string name="weather_title">Weather Information</string>
 
     <!--메인메뉴 - 관심지역탭 -->
-    <string name="favorite_title">관심지역</string>
+    <string name="favorite_title">Areas of Interest</string>
 
     <!--메인메뉴 - 설정탭 -->
-    <string name="setting_title">설정</string>
+    <string name="setting_title">Setting</string>
 
     <!--메인메뉴 - 설정탭 - 로그인관련 -->
-    <string name="signIn_title">로그인</string>
-    <string name="signUp_title">회원가입</string>
-
-    <!--메인메뉴 - 설정탭 - 일반설정 -->
-    <string name="normal_tittle">일반설정</string>
-    <string name="theme">테마</string>
-    <string name="none">무채색</string>
-    <string name="color">채색</string>
-
-    <string name="language">언어</string>
-
-    <!--메인메뉴 - 설정탭 - 온도별 옷 설정 -->
-    <string name="clothes_title">온도별 옷차림</string>
-
-    <!--메인메뉴 - 설정탭 - 광고요청 -->
-    <string name="ad_title">광고요청</string>
-
-    <!--메인메뉴 - 설정탭 - 광고관리(관리자) -->
-    <string name="admin_title">광고관리(관리자)</string>
-
+    <string name="signIn_title">SignIn</string>
+    <string name="signUp_title">SignUp</string>
 
     <!--  메인, 즐겨찾기 String 설정   -->
+    <string name="normal_tittle">Normal Setting</string>
+
+    <!--메인메뉴 - 설정탭 -  로그인 / 회원가입 -->
+    <string name="setting_Login">Login / Register</string>
+
+    <!--메인메뉴 - 설정탭 - 온도별 옷 설정 -->
+    <string name="clothes_title">Clothing Setting</string>
+
+    <!--메인메뉴 - 설정탭 - 광고요청 -->
+    <string name="ad_title">Ad request</string>
+
+    <!--메인메뉴 - 설정탭 - 광고관리(관리자) -->
+    <string name="admin_title">Ad Administrator</string>
+
+
+    <string name="language">Language</string>
+
+
+    <!--메인메뉴 - 설정탭 - 일반설정 -->
+    <string name="none">none</string>
+    <string name="color">color</string>
+    <string name="theme">theme</string>
 
     <!-- 메인 오늘의 옷 추천 -->
-    <string name="main_recommend">오늘의 옷 추천</string>
-    <string name="main_hour">시간별 날씨</string>
-    <string name="main_day">주간 날씨</string>
+    <string name="main_recommend">Clothes Recommendation</string>
+    <string name="main_hour">Hourly Weather</string>
+    <string name="main_day">Daily Weather</string>
 
     <!--추가 String -->
-    <string name="ClothesChoice">옷차림</string>
-    <string name="ClothesChoiceMax">기온별 옷차림은 최대 5개입니다.</string>
-    <string name="ClothesChoiceMin">기온별 옷차림은 최소 1개 이상입니다.</string>
+    <string name="ClothesChoice">Clothing</string>
+    <string name="ClothesChoiceMax">There are up to 5</string>
+    <string name="ClothesChoiceMin">There are at least 1</string>
+    <string name="pop">pop : </string>
+    <string name="favorite_search">Enter To Search Area</string>
+    <string name="singin_autoLogin">autologin</string>
+    <string name="singin_findIdPw">findid/pw ></string>
+    <string name="singin_signup">signup</string>
 
 
 

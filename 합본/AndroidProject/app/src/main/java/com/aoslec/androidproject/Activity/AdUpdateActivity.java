@@ -1,4 +1,4 @@
-package com.aoslec.androidproject.AdActivity;
+package com.aoslec.androidproject.Activity;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -28,10 +28,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
-import com.aoslec.androidproject.Activity.PayActivity;
 import com.aoslec.androidproject.NetworkTask.ImageNetworkTask;
 import com.aoslec.androidproject.R;
 import com.aoslec.androidproject.Share.ShareVar;
@@ -45,7 +43,7 @@ import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class AdUpdateActivity extends AppCompatActivity {
+public class AdUpdateActivity extends Activity {
 
     String type, ad_id, payment_id, ad_image, ad_location, ad_title, ad_url, ad_indate, ad_outdate, ad_price, new_price;
     Date newDate;

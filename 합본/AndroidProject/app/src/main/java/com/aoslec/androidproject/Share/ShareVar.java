@@ -3,7 +3,7 @@ package com.aoslec.androidproject.Share;
 public class ShareVar {
 
     //본인 아이피만 수정해서 쓰시면 됩니다.
-    public static final String sUrl = "http://172.20.10.6:8080/contact/";
+    public static final String sUrl = "http://172.30.1.11:8080/project/";
     //https://android-team-project-d2032-default-rtdb.firebaseio.com/
 
     //추후 로그인했을때 이메일 공유합니다.

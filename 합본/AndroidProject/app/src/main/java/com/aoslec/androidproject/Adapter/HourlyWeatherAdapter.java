@@ -55,8 +55,8 @@ public class HourlyWeatherAdapter extends RecyclerView.Adapter<HourlyWeatherAdap
 
     @Override
     public void onBindViewHolder(HourlyWeatherAdapter.ViewHolder holder, int position) {
-        holder.hourly_temp.setText("온도 : "+data.get(position).getHourly_temp()+"°");
-        holder.hourly_pop.setText("강수 확률 : "+data.get(position).getHourly_pop()+"%");
+        holder.hourly_temp.setText(data.get(position).getHourly_temp()+"°");
+        holder.hourly_pop.setText(mcontext.getString(R.string.pop)+" "+data.get(position).getHourly_pop()+"%");
         holder.hourly_time.setText(data.get(position).getHourly_time());
 
         int id=data.get(position).getHourly_id();

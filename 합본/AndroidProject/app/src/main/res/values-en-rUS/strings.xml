@@ -26,4 +26,10 @@
     <string name="ClothesChoice">Clothing</string>
     <string name="ClothesChoiceMax">There are up to 5</string>
     <string name="ClothesChoiceMin">There are at least 1</string>
+    <string name="pop">pop : </string>
+    <string name="favorite_search">Enter To Search Area</string>
+    <string name="setting_Login">Login / Register</string>
+    <string name="singin_autoLogin">autologin</string>
+    <string name="singin_findIdPw">findid/pw ></string>
+    <string name="singin_signup">signup</string>
 </resources>

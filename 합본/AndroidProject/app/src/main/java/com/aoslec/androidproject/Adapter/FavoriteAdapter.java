@@ -1,18 +1,27 @@
 package com.aoslec.androidproject.Adapter;
 
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.aoslec.androidproject.Activity.MainActivity;
 import com.aoslec.androidproject.Bean.FavoriteLatLongBean;
+import com.aoslec.androidproject.Fragment.Main_FavoriteFragment;
 import com.aoslec.androidproject.R;
 import com.aoslec.androidproject.Share.SaveSharedPreferences;
 import com.aoslec.androidproject.SQLite.FavoriteInfo;
@@ -37,6 +46,8 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
         public ImageView favorite_current_heart;
         public LottieAnimationView favorite_laCover;
         public FavoriteInfo favoriteInfo;
+        public ConstraintLayout favorite_currentView;
+        SQLiteDatabase DB;
         public ViewHolder(View convertView){
             super(convertView);
             favorite_current_location=convertView.findViewById(R.id.favorite_current_location);
@@ -44,8 +55,9 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
             favorite_laCover=convertView.findViewById(R.id.favorite_laCover);
             favorite_current_heart=convertView.findViewById(R.id.favorite_current_heart);
             favoriteInfo=new FavoriteInfo(convertView.getContext());
+            favorite_currentView=convertView.findViewById(R.id.favorite_currentView);
 
-            convertView.setOnClickListener(new View.OnClickListener() {
+            favorite_currentView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     int position=getAdapterPosition();
@@ -56,35 +68,42 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
                         SaveSharedPreferences.setLocation(convertView.getContext(), data.get(position).getLocation());
                     }
 
+                    Toast.makeText(convertView.getContext(),"클릭됨!",Toast.LENGTH_SHORT).show();
+
                 }
             });
 
             favorite_current_heart.setOnClickListener(new View.OnClickListener() {
-                SQLiteDatabase DB;
                 @Override
                 public void onClick(View v) {
                     DB=favoriteInfo.getWritableDatabase();
                     int position=getAdapterPosition();
-                    int id=data.get(position).getId();
-                    String query="select heart from favorite where id='"+id+"';";
+                    String lat=data.get(position).getLatitude();
+                    String Long=data.get(position).getLongitude();
+
+                    String query="select heart from favorite where latitude='" + lat + "' and longitude='"+Long+"';";
                     Cursor cursor=DB.rawQuery(query,null);
                     String heart="";
                     while(cursor.moveToNext()) {
                         heart=cursor.getString(0);
                     }
 
+
                     if(position!=RecyclerView.NO_POSITION){
                         if(heart.equals("Y")) {
-                            String query2 = "UPDATE favorite set heart='N' where id='" + id + "';";
+                            String query2 = "UPDATE favorite set heart='N' where latitude='" + lat + "' and longitude='"+Long+"';";
                             DB.execSQL(query2);
                             favorite_current_heart.setImageResource(R.drawable.ic_favorite);
+                            ((MainActivity)mcontext).refresh();
                         }
                         if(heart.equals("N")){
-                            String query2 = "UPDATE favorite set heart='Y' where id='" + id + "';";
+                            String query2 = "UPDATE favorite set heart='Y' where latitude='" + lat + "' and longitude='"+Long+"';";
                             DB.execSQL(query2);
                             favorite_current_heart.setImageResource(R.drawable.ic_favorite_red);
                         }
                     }
+
+
                 }
             });
         }
@@ -100,7 +119,6 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
     @Override
     public void onBindViewHolder(FavoriteAdapter.ViewHolder holder, int position) {
         holder.favorite_current_location.setText(data.get(position).getLocation());
-        holder.favorite_current_heart.setImageResource(R.drawable.ic_favorite_red);
         holder.favorite_current_temp.setText(Integer.toString(data.get(position).getTemp())+"°");
 
         int id=data.get(position).getId();
@@ -113,13 +131,33 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
         else if(id>=800&&id<=802) holder.favorite_laCover.setAnimation(R.raw.cloudy_sun);
         else if(id>=803) holder.favorite_laCover.setAnimation(R.raw.cloudy);
         else holder.favorite_laCover.setAnimation(R.raw.cloudy);
+
+        int iTemp=data.get(position).getTemp();
+        if (iTemp>=30){
+            holder.favorite_currentView.setBackgroundColor(ContextCompat.getColor(mcontext, R.color.color1));
+        }else if (iTemp<30 && iTemp>=25){
+            holder.favorite_currentView.setBackgroundColor(ContextCompat.getColor(mcontext, R.color.color2));
+        }else if (iTemp<25 && iTemp>=20){
+            holder.favorite_currentView.setBackgroundColor(ContextCompat.getColor(mcontext, R.color.color3));
+        }else if (iTemp<20 && iTemp>=15){
+            holder.favorite_currentView.setBackgroundColor(ContextCompat.getColor(mcontext, R.color.color4));
+        }else if (iTemp<15 && iTemp>=10){
+            holder.favorite_currentView.setBackgroundColor(ContextCompat.getColor(mcontext, R.color.color7));
+        }else if (iTemp<10 && iTemp>=5){
+            holder.favorite_currentView.setBackgroundColor(ContextCompat.getColor(mcontext, R.color.color8));
+        }else if (iTemp<5 && iTemp>=0){
+            holder.favorite_currentView.setBackgroundColor(ContextCompat.getColor(mcontext, R.color.color9));
+        }else if (iTemp<0 && iTemp>=-5){
+            holder.favorite_currentView.setBackgroundColor(ContextCompat.getColor(mcontext, R.color.color10));
+        }else if (iTemp<-5){
+            holder.favorite_currentView.setBackgroundColor(ContextCompat.getColor(mcontext, R.color.color11));
+        }
     }
 
     @Override
     public int getItemCount() {
         return data.size();
     }
-
 
 
 }

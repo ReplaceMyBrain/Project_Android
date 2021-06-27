@@ -18,13 +18,13 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
+import com.aoslec.androidproject.Activity.AdActivity;
 import com.aoslec.androidproject.Activity.AdminActivity;
 import com.aoslec.androidproject.Activity.ClothesActivity;
 import com.aoslec.androidproject.Activity.MyPageActivity;
 import com.aoslec.androidproject.Activity.NormalSettingActivity;
 import com.aoslec.androidproject.Activity.SignInActivity;
-import com.aoslec.androidproject.AdActivity.AdActivity;
-import com.aoslec.androidproject.AdActivity.AdPaymentActicity;
+import com.aoslec.androidproject.Activity.AdPaymentActicity;
 import com.aoslec.androidproject.Bean.Ad_PaymentBean;
 import com.aoslec.androidproject.NetworkTask.AdPayment_NetworkTask;
 import com.aoslec.androidproject.R;
@@ -42,7 +42,7 @@ public class Main_SettingFragment extends Fragment {
     ImageView profile, defaultprofile;
     TextView name, tv_wait, tv_now, tv_history, tv_cancel;
     LinearLayout layout_now, layout_wait, layout_history, layout_cancel;
-    LinearLayout login, setting, clothes, ad, admin, profile_layout;
+    LinearLayout login, setting, clothes, ad, admin, profile_layout, AdLL;
     ArrayList<Ad_PaymentBean> ad_paymentBeans;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -72,11 +72,22 @@ public class Main_SettingFragment extends Fragment {
         ad = view.findViewById(R.id.setting_ad);
         admin = view.findViewById(R.id.setting_admin);
 
+        //도우 추가수정 > AdLL추가
+        AdLL = view.findViewById(R.id.setting_AdLL);
+
+
+
+        //비로그인시
         if (SaveSharedPreferences.getPrefIsLogin(getContext()).equals("n")) {
-            profile_layout.setVisibility(View.GONE);
+            profile_layout.setVisibility(View.INVISIBLE);
             profile.setVisibility(View.INVISIBLE);
 
         }else {
+            //로그인했을 경우.
+            if (SaveSharedPreferences.getPrefIsLogin(getContext()).equals("y")) {
+                ad.setVisibility(View.VISIBLE);
+            }
+
             if (SaveSharedPreferences.getPrefImage(getContext()) == null || SaveSharedPreferences.getPrefImage(getContext()).equals("")) {
                 login.setVisibility(View.GONE);
                 profile.setVisibility(View.INVISIBLE);
@@ -98,7 +109,7 @@ public class Main_SettingFragment extends Fragment {
 
 
 
-        ad_countAction();
+
         login.setOnClickListener(onClickListener);
         setting.setOnClickListener(onClickListener);
         clothes.setOnClickListener(onClickListener);
@@ -140,6 +151,8 @@ public class Main_SettingFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
+        ad_countAction();
+
         //액션바 타이틀 변경
         FragmentActivity activity = getActivity();
         if (activity != null) {
@@ -148,6 +161,14 @@ public class Main_SettingFragment extends Fragment {
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 //        getSupportActionBar().setTitle("Setting");
         }
+
+        //도우 추가수정 > admin 로그인시 광고갯수창, 광고메뉴 안보임.
+        if(SaveSharedPreferences.getPrefEmail(getContext()).equals("admin")){
+            ad.setVisibility(View.GONE);
+            admin.setVisibility(View.VISIBLE);
+            AdLL.setVisibility(View.GONE);
+        }
+
     }
 
 

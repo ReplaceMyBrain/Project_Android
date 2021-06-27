@@ -1,6 +1,7 @@
 package com.aoslec.androidproject.Activity;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -24,11 +25,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.aoslec.androidproject.R;
 import com.aoslec.androidproject.Share.SaveSharedPreferences;
 import com.aoslec.androidproject.SQLite.FavoriteInfo;
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -37,6 +40,7 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
+import com.google.android.gms.location.places.ui.PlaceSelectionListener;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -294,10 +298,10 @@ public class GPSActivity extends AppCompatActivity implements OnMapReadyCallback
 
 
                 String markerTitle = getCurrentAddress(currentPosition);
-                String markerSnippet = "위도:" + String.valueOf(location.getLatitude())
-                        + " 경도:" + String.valueOf(location.getLongitude());
+                String markerSnippet = "위도:" +Double.toString(location.getLatitude()).substring(0,5)
+                        + " 경도:" + Double.toString(location.getLongitude()).substring(0,5);
 
-                Log.d(TAG, "onLocationResult : " + markerSnippet);
+                Log.d(TAG, "markerTitle : " + markerTitle);
 
 
                 //현재 위치에 마커 생성하고 이동
@@ -689,10 +693,12 @@ public class GPSActivity extends AppCompatActivity implements OnMapReadyCallback
             // 콤마를 기준으로 split
             String []splitStr = addressList.get(0).toString().split(",");
             String address = splitStr[0].substring(splitStr[0].indexOf("\"") + 1,splitStr[0].length() - 2); // 주소
+            String adminAddress=addressList.get(0).getAdminArea();
 
             Log.d(TAG,"splitStr"+splitStr);
             Log.d(TAG,"addressList : "+addressList.get(0).toString());
-            Log.d(TAG,"address"+address);
+            Log.d(TAG,"address : "+address);
+            Log.d(TAG,"admin address : "+adminAddress);
 
             String latitude = splitStr[10].substring(splitStr[10].indexOf("=") + 1); // 위도
             String longitude = splitStr[12].substring(splitStr[12].indexOf("=") + 1); // 경도
@@ -701,8 +707,8 @@ public class GPSActivity extends AppCompatActivity implements OnMapReadyCallback
             LatLng point = new LatLng(Double.parseDouble(latitude), Double.parseDouble(longitude));
             // 마커 생성
             MarkerOptions mOptions2 = new MarkerOptions();
-            mOptions2.title(address);
-            mOptions2.snippet("위도 : "+latitude+", 경도 : "+longitude);
+            mOptions2.title(adminAddress);
+            mOptions2.snippet("위도 : "+latitude.substring(0,5)+", 경도 : "+longitude.substring(0,5));
             mOptions2.position(point);
             // 마커 추가
             mMap.addMarker(mOptions2);
@@ -711,7 +717,7 @@ public class GPSActivity extends AppCompatActivity implements OnMapReadyCallback
 
             searchedLat=latitude;
             searchedLong=longitude;
-            searchedLocation=address;
+            searchedLocation=adminAddress;
         }
     }
 

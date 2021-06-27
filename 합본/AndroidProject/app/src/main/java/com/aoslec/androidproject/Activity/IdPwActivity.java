@@ -36,7 +36,7 @@ import com.aoslec.androidproject.Util.MailTread;
 
 import java.util.ArrayList;
 
-public class IdPwActivity extends AppCompatActivity implements View.OnClickListener {
+public class IdPwActivity extends Activity implements View.OnClickListener {
 
     String urlAddr;
     int findpwcheck = 1;
@@ -98,7 +98,7 @@ public class IdPwActivity extends AppCompatActivity implements View.OnClickListe
 
         findIdMobileCounter = findViewById(R.id.findIdMobileCount);
         findPwWithMobile = findViewById(R.id.findpw_phone_layout);
-        findpw_email_layout = findViewById(R.id.findpw_email_layout);
+//        findpw_email_layout = findViewById(R.id.findpw_email_layout);
 
 
         //find_email_page
@@ -155,12 +155,12 @@ public class IdPwActivity extends AppCompatActivity implements View.OnClickListe
                     mobile.requestFocus();
                 }else {
                     try {
-                        urlAddr = ShareVar.sUrl + "select_find_user_where.jsp?phone=" + checkMobiletext;
+                        urlAddr = ShareVar.sUrl + "select_find_user_where_phone.jsp?phone=" + checkMobiletext;
                         Log.v(TAG, urlAddr);
                         User_NT userNT = new User_NT(IdPwActivity.this, urlAddr, "select");
                         Object obj = userNT.execute().get();
                         users = (ArrayList<User>) obj;
-                            Toast.makeText(IdPwActivity.this, users.get(0).getPhone(), Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(IdPwActivity.this, users.get(0).getPhone(), Toast.LENGTH_SHORT).show();
                         if (ShareVar.login_fail != 0) {
                             Toast.makeText(IdPwActivity.this, "해당 번호로 가입된 아이디가 없습니다.", Toast.LENGTH_SHORT).show();
                             ShareVar.login_fail = 0;
@@ -174,6 +174,7 @@ public class IdPwActivity extends AppCompatActivity implements View.OnClickListe
                             ShareVar.login_fail = 0;
                         }
                     }catch (Exception e){
+                        Toast.makeText(IdPwActivity.this, "해당 번호로 가입된 아이디가 없습니다.", Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
                     }
                 }
@@ -252,7 +253,10 @@ public class IdPwActivity extends AppCompatActivity implements View.OnClickListe
         ShareVar.login_fail = 0;
         if (checkedEmail.equals("") || checkedEmail == null) {
             Toast.makeText(getApplicationContext(), "이메일을 입력해 주세요", Toast.LENGTH_SHORT).show();
-            mobile.requestFocus();
+            findpw_id_phone_edittext.requestFocus();
+        }else if(findpw_phone_edittext.getText().toString().trim().equals("") || findpw_phone_edittext.getText().toString().trim() == null) {
+            Toast.makeText(getApplicationContext(), "번호을 입력해 주세요", Toast.LENGTH_SHORT).show();
+            findpw_phone_edittext.requestFocus();
         }else {
             try {
                 urlAddr = ShareVar.sUrl + "select_find_user_where.jsp?email=" + checkedEmail;
@@ -285,6 +289,8 @@ public class IdPwActivity extends AppCompatActivity implements View.OnClickListe
                         }else {
                             Toast.makeText(IdPwActivity.this, "입력한 전화번호를 다시 확인해주세요!", Toast.LENGTH_SHORT).show();
                         }
+                    } else {
+                        Toast.makeText(IdPwActivity.this, "입력한 이메일을 다시 확인해주세요!", Toast.LENGTH_SHORT).show();
                     }
                     if (findpwcheck == 1){
                         MailTread mailTread = new MailTread(checkedEmail, IdPwActivity.this);
@@ -299,7 +305,9 @@ public class IdPwActivity extends AppCompatActivity implements View.OnClickListe
 //                            findpw_pin_button.setEnabled(true);
 //                            mobileCounter.countDownTimer(findIdMobileCounter).start();
                         }else {
-
+                            Toast.makeText(IdPwActivity.this, "입력한 이메일을 다시 확인해주세요!", Toast.LENGTH_SHORT).show();
+//                            errorMsg.setVisibility(View.VISIBLE);
+                            ShareVar.login_fail = 0;
                         }
                     }
                 } else {

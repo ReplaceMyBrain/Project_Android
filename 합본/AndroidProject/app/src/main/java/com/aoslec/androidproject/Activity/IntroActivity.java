@@ -45,9 +45,16 @@ public class IntroActivity extends AppCompatActivity implements AutoPermissionsL
     public void onGranted(int requestCode, String[] permissions) {
         handler.postDelayed(new Runnable() {
             public void run() {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
-                finish();}
+                if (SaveSharedPreferences.getFirstVisitUser(getApplicationContext()).equals("y")) {
+                    Intent intent = new Intent(getApplicationContext(), ExplainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }else {
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }
         }, 4000);
         Log.d("퍼미션", "permissions granted : " + permissions.length);
     }

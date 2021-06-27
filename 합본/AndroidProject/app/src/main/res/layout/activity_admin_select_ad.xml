@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.AdActivity"
+    android:padding="30dp"
+    android:gravity="center">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        >
+
+        <ImageView
+            android:id="@+id/select_ad_image"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:src="@drawable/ad"
+            android:background="@drawable/round"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        >
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="타이틀"
+            android:textSize="25dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            />
+        <TextView
+            android:id="@+id/select_ad_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:layout_marginLeft="10dp"
+            android:inputType="text"
+            android:layout_gravity="center"
+            android:imeOptions="actionDone"
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        >
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="URL"
+            android:textSize="25dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            />
+        <TextView
+            android:id="@+id/select_ad_url"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:layout_marginLeft="10dp"
+            android:inputType="number"
+            android:layout_gravity="center"
+            android:imeOptions="actionDone"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        >
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="신청자"
+            android:textSize="25dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            />
+        <TextView
+            android:id="@+id/select_ad_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:layout_marginLeft="10dp"
+            android:inputType="number"
+            android:layout_gravity="center"
+            android:imeOptions="actionDone"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        >
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="가격"
+            android:textSize="25dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            />
+        <TextView
+            android:id="@+id/select_ad_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:layout_marginLeft="10dp"
+            android:inputType="number"
+            android:layout_gravity="center"
+            android:imeOptions="actionDone"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <Button
+            android:id="@+id/btn_adGo"
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button"
+            android:text="광고 승인"
+            android:textSize="17dp"
+            android:layout_margin="20dp"
+            />
+        <Button
+            android:id="@+id/btn_adStop"
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button"
+            android:text="광고 거절"
+            android:textSize="17dp"
+            android:layout_margin="20dp"
+            />
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

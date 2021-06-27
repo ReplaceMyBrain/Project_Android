@@ -19,18 +19,13 @@ public class SaveSharedPreferences {
     static final String FIRST_VISIT_USER = "firstVisitUser";
     static final String PREF_IS_LOGIN = "isLogin";
     static final String PREF_AUTO_LOGIN = "autoLogin";
-    static final String LOGIN_METHOD = "common";
+    static final String LOGIN_METHOD = "";
 
     static final String PREF_EMAIL = "email";
     static final String PREF_PW = "pw";
     static final String PREF_NAME = "name";
     static final String PREF_IMAGE = "image";
     static final String PREF_PHONE = "phone";
-    static final String PREF_INDATE = "userindate";
-
-    static final String MARKETING_AGREEMENT = "marketingAgreement";
-    static final String NOTICE_DATE = "noticeDate";
-
 
     //<서버 url>
 
@@ -56,7 +51,7 @@ public class SaveSharedPreferences {
 
     //값을 불러올때 사용
     public static String getLangMethod(Context ctx) {
-        return getSharedPreferences(ctx).getString(lang, "ko");
+        return getSharedPreferences(ctx).getString(lang, "en");
     }
 
 
@@ -124,26 +119,6 @@ public class SaveSharedPreferences {
 
     public static String getFirstVisitUser(Context context){
         return getSharedPreferences(context).getString(FIRST_VISIT_USER, "y");
-    }
-
-    public static void setNoticeDate(Context context, String noticeDate){
-        SharedPreferences.Editor editor = getSharedPreferences(context).edit();
-        editor.putString(NOTICE_DATE, noticeDate);
-        editor.apply();
-    }
-
-    public static String getNoticeDate(Context context){
-        return getSharedPreferences(context).getString(NOTICE_DATE, "n");
-    }
-
-    public static void setMarketingAgreement(Context context, String agreement){
-        SharedPreferences.Editor editor = getSharedPreferences(context).edit();
-        editor.putString(MARKETING_AGREEMENT, agreement);
-        editor.apply();
-    }
-
-    public static String getMarketingAgreement(Context context){
-        return getSharedPreferences(context).getString(MARKETING_AGREEMENT, "y");
     }
 
     public static void setPrefIsLogin(Context ctx, String isLogin) {
@@ -215,16 +190,6 @@ public class SaveSharedPreferences {
 
     public static String getPrefPhone(Context ctx) {
         return getSharedPreferences(ctx).getString(PREF_PHONE, "");
-    }
-
-    public static void setPrefIndate(Context ctx, String indate) {
-        SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
-        editor.putString(PREF_INDATE, indate);
-        editor.apply();
-    }
-
-    public static String getPrefIndate(Context ctx) {
-        return getSharedPreferences(ctx).getString(PREF_INDATE, "");
     }
 
     public static void setLoginMethod(Context ctx, String loginmethod) {

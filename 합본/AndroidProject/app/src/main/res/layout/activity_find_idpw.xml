@@ -17,17 +17,13 @@
             android:layout_alignParentTop="true"
             android:layout_marginTop="10dp"
             android:background="@null">
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-
-
                     <ImageView
                         android:id="@+id/myUnderImg3"
                         android:layout_width="wrap_content"
@@ -37,7 +33,6 @@
                         android:layout_marginRight="73dp"
                         android:visibility="gone"
                         app:srcCompat="@drawable/profile_image" />
-
                     <ImageView
                         android:id="@+id/myUnderImg2"
                         android:layout_width="wrap_content"
@@ -46,7 +41,6 @@
                         android:layout_marginLeft="52.5dp"
                         android:visibility="visible"
                         />
-
                     <TextView
                         android:id="@+id/findAccountTextView"
                         android:layout_width="wrap_content"
@@ -60,7 +54,6 @@
                         android:textColor="#442C2E"
                         android:textSize="16sp"
                         android:textStyle="bold" />
-
                     <TextView
                         android:id="@+id/findPwTextView"
                         android:layout_width="wrap_content"
@@ -74,9 +67,7 @@
                         android:textSize="16sp"
                         android:textStyle="bold" />
                 </RelativeLayout>
-
             </LinearLayout>
-
         </RelativeLayout>
 
         <LinearLayout
@@ -86,12 +77,10 @@
             android:layout_below="@id/findAccountTabLayout"
             android:orientation="vertical"
             android:visibility="visible">
-
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center">
-
                 <TextView
                     android:id="@+id/findid_phone"
                     android:layout_width="100dp"
@@ -100,7 +89,6 @@
                     android:text="휴대전화"
                     android:textColor="#000000"
                     android:textSize="18sp" />
-
                 <Button
                     android:id="@+id/findid_phonebutton"
                     android:layout_width="80dp"
@@ -110,7 +98,6 @@
                     android:layout_toRightOf="@id/findid_phone_edittext"
                     android:text="확인"
                     android:textSize="12sp" />
-
                 <EditText
                     android:id="@+id/findid_phone_edittext"
                     android:layout_width="245dp"
@@ -119,7 +106,6 @@
                     android:ems="10"
                     android:hint="   휴대전화 번호"
                     android:inputType="textPersonName" />
-
             </RelativeLayout>
         </LinearLayout>
 
@@ -130,35 +116,34 @@
             android:layout_below="@id/findAccountTabLayout"
             android:orientation="vertical"
             android:visibility="gone">
-            <RadioGroup
-                android:id="@+id/pwFindRadioGroup"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:visibility="visible">
-                <RadioButton
-                    android:id="@+id/findpw_emill_radiobutton"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginLeft="20dp"
-                    android:text="회원정보에 등록한 이메일로 인증"
-                    android:textSize="18sp" />
-                <RadioButton
-                    android:id="@+id/findpw_phone_radiobutton"
-                    android:layout_width="303dp"
-                    android:layout_height="28dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginLeft="20dp"
-                    android:text="회원정보에 등록한 휴대전화로 인증"
-                    android:textSize="18sp" />
-            </RadioGroup>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="40dp"
-                >
+                    android:layout_marginLeft="40dp"
+                    android:orientation="vertical"
+                    >
+                <RadioGroup
+                    android:id="@+id/pwFindRadioGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone">
+                    <RadioButton
+                        android:id="@+id/findpw_emill_radiobutton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:text="회원정보에 등록한 이메일로 인증"
+                        android:textSize="18sp" />
+                    <RadioButton
+                        android:id="@+id/findpw_phone_radiobutton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:text="회원정보에 등록한 휴대전화로 인증"
+                        android:textSize="18sp" />
+                </RadioGroup>
                 <TextView
                     android:id="@+id/findpw_email_phone_check"
                     android:layout_width="wrap_content"
@@ -168,13 +153,6 @@
                     android:textColor="#FF002E"
                     android:visibility="invisible"
                     />
-                <LinearLayout
-                    android:id="@+id/findpw_email_layout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:visibility="visible"
-                    >
                     <TextView
                         android:id="@+id/findpw_id_phone"
                         android:layout_width="wrap_content"
@@ -186,7 +164,7 @@
                         />
                     <EditText
                         android:id="@+id/findpw_id_phone_edittext"
-                        android:layout_width="250dp"
+                        android:layout_width="300dp"
                         android:layout_height="40dp"
                         android:ems="10"
                         android:hapticFeedbackEnabled="true"
@@ -199,18 +177,19 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:visibility="gone">
+                        android:visibility="visible">
                         <TextView
                             android:id="@+id/findpw_phone"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:inputType="number"
                             android:text="휴대전화"
                             android:textColor="#000000"
                             android:textSize="18sp"
                             />
                         <EditText
                             android:id="@+id/findpw_phone_edittext"
-                            android:layout_width="250dp"
+                            android:layout_width="300dp"
                             android:layout_height="40dp"
                             android:ems="10"
                             android:enabled="true"
@@ -272,7 +251,11 @@
                             />
                     </LinearLayout>
                 </LinearLayout>
-            </LinearLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
 
             <!--<FrameLayout
                 android:id="@+id/findpw_email_pramelayout"
@@ -367,8 +350,5 @@
             </FrameLayout>-->
 
 
-        </LinearLayout>
 
-    </RelativeLayout>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>

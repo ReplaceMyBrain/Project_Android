@@ -68,10 +68,12 @@
                         android:id="@+id/tv_name_setting"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
                         android:textSize="30dp"
                         android:text="tv_name_list"
                         />
                     <LinearLayout
+                        android:id="@+id/setting_AdLL"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="horizontal"
@@ -93,7 +95,7 @@
                                 android:id="@+id/tv_count_wait_setting"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="3"
+                                android:text="0"
                                 />
                         </LinearLayout>
                         <LinearLayout
@@ -113,7 +115,7 @@
                                 android:id="@+id/tv_count_now_setting"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="4"
+                                android:text="0"
                                 />
                         </LinearLayout>
                         <LinearLayout
@@ -133,7 +135,7 @@
                                 android:id="@+id/tv_count_history_setting"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="3"
+                                android:text="0"
                                 />
                         </LinearLayout>
                         <LinearLayout
@@ -153,10 +155,16 @@
                                 android:id="@+id/tv_count_cancel_setting"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="5"
+                                android:text="0"
                                 />
                         </LinearLayout>
                     </LinearLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/black"
+                        />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
             <LinearLayout
@@ -174,6 +182,7 @@
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:layout_marginTop="15dp"
+                android:layout_marginLeft="30dp"
                 >
 
                 <ImageView
@@ -186,7 +195,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="로그인 / 회원가입"
+                    android:text="@string/setting_Login"
                     android:layout_marginLeft="15dp"
                     android:textSize="20dp"
                     android:gravity="center|left"
@@ -201,6 +210,7 @@
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:layout_marginTop="15dp"
+                android:layout_marginLeft="30dp"
                 >
 
                 <ImageView
@@ -228,6 +238,7 @@
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:layout_marginTop="15dp"
+                android:layout_marginLeft="30dp"
                 >
 
                 <ImageView
@@ -255,6 +266,8 @@
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:layout_marginTop="15dp"
+                android:visibility="gone"
+                android:layout_marginLeft="30dp"
                 >
 
                 <ImageView
@@ -282,6 +295,8 @@
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:layout_marginTop="15dp"
+                android:visibility="gone"
+                android:layout_marginLeft="30dp"
                 >
 
                 <ImageView

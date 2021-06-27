@@ -1,6 +1,7 @@
 package com.aoslec.androidproject.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.location.Address;
@@ -8,6 +9,7 @@ import android.location.Geocoder;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
@@ -64,6 +66,7 @@ public class Main_FavoriteFragment extends Fragment {
     Main_WeatherFragment main_weatherFragment;
     MainTabAdapter mainTabAdapter;
 
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
@@ -105,15 +108,12 @@ public class Main_FavoriteFragment extends Fragment {
 
                 searchLocation(location);
 
-
+                GetHistoryData();
 
 //                transaction.replace(R.id.main_fragment,main_weatherFragment);
 
             }
         });
-
-        GetHistoryData();
-        GetFavoriteData();
 
         return view;
     }
@@ -122,15 +122,13 @@ public class Main_FavoriteFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        favoriteHistoryAdapter.notifyDataSetChanged();
-        favoriteAdapter.notifyDataSetChanged();
-
         GetHistoryData();
         GetFavoriteData();
 
     }
 
-    private void GetHistoryData() {
+    public void GetHistoryData() {
+        favoriteLocations.clear();
         try {
             DB = favoriteInfo.getWritableDatabase();
             String query = "select * from favorite order by id desc;";
@@ -156,9 +154,13 @@ public class Main_FavoriteFragment extends Fragment {
             e.printStackTrace();
         }
 
+        //도우수정 // 프레그먼트 재시작!
+        FragmentTransaction ft = getParentFragmentManager().beginTransaction();
+        ft.detach(Main_FavoriteFragment.this).attach(Main_FavoriteFragment.this).commit();
+
     }//GetHistoryData()
 
-    private void GetFavoriteData() {
+    public void GetFavoriteData() {
         try {
             favoriteLocationBeans.clear();
             favoriteLatLongBeans.clear();
@@ -203,6 +205,7 @@ public class Main_FavoriteFragment extends Fragment {
 
             favoriteAdapter = new FavoriteAdapter(getActivity(), R.layout.recycler_current_weather, favoriteLatLongBeans);
             rvFavorite.setAdapter(favoriteAdapter);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -224,6 +227,7 @@ public class Main_FavoriteFragment extends Fragment {
             // 콤마를 기준으로 split
             String[] splitStr = addressList.get(0).toString().split(",");
             String address = splitStr[0].substring(splitStr[0].indexOf("\"") + 1, splitStr[0].length() - 2); // 주소
+            String adminAddress=addressList.get(0).getAdminArea();
 
             Log.d("searchLocation", "splitStr : " + splitStr);
             Log.d("searchLocation", "addressList : " + addressList.get(0).toString());
@@ -238,7 +242,7 @@ public class Main_FavoriteFragment extends Fragment {
 
             try{
                 DB=favoriteInfo.getWritableDatabase();
-                String query2="INSERT INTO favorite(location,latitude,longitude,heart) VALUES('"+address+"','"+latitude+"','"+longitude+"','N');";
+                String query2="INSERT INTO favorite(location,latitude,longitude,heart) VALUES('"+adminAddress+"','"+latitude+"','"+longitude+"','N');";
                 DB.execSQL(query2);
 
                 favoriteInfo.close();
@@ -252,10 +256,6 @@ public class Main_FavoriteFragment extends Fragment {
                 Toast.makeText(getContext(),"Insert Error!",Toast.LENGTH_SHORT).show();
             }
 
-
         }
-
-
-
     }
 }

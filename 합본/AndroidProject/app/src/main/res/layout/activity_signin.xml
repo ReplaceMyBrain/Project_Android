@@ -90,19 +90,19 @@
                     android:layout_marginTop="10dp"
                     android:checked="true"
                     android:paddingVertical="5dp"
-                    android:text="자동로그인"
+                    android:text="@string/singin_autoLogin"
                     />
                 <Button
                     android:id="@+id/btn_search_idpw"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:layout_marginLeft="100dp"
+                    android:layout_marginLeft="60dp"
                     android:gravity="right"
                     android:paddingVertical="5dp"
                     android:background="#00ff0000"
                     style="?android:attr/borderlessButtonStyle"
-                    android:text="id/pw찾기 > "
+                    android:text="@string/singin_findIdPw"
                     />
             </LinearLayout>
             <Button
@@ -119,10 +119,10 @@
                 android:id="@+id/btn_kakao_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/kakaobutton"
+                android:background="@drawable/kakao_login_medium_wide"
                 android:layout_marginBottom="3dp"
                 android:textSize="20dp"
-                android:text="Login KAKAO" />
+                />
             <com.google.android.gms.common.SignInButton
                 android:id="@+id/btn_google_login"
                 android:layout_width="match_parent"
@@ -135,7 +135,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:background="#00ff0000"
-                android:text="가입하기"
+                android:text="@string/singin_signup"
                 style="?android:attr/borderlessButtonStyle"
                 />
 

@@ -64,9 +64,9 @@ public class ExplainActivity extends AppCompatActivity {
 
             //데이타 넣기
             data = new ArrayList<>();
-            data.add(new ExplainBean("오늘날씨 어때요?", "날씨 정보를 바로 알려드립니다!",R.raw.ex_weather));
-            data.add(new ExplainBean("무슨 옷을 입을까요?", "날씨에 알맞는 옷을 추천해드립니다!",R.raw.ex_clothes));
-            data.add(new ExplainBean("나만의 지역을 가질수 있나요?", "하트를 눌러 나만의 지역을 설정할 수 있습니다!",R.raw.ex_favorite));
+            data.add(new ExplainBean(this.getString(R.string.explain_title1), this.getString(R.string.explain_contents1),R.raw.ex_weather));
+            data.add(new ExplainBean(this.getString(R.string.explain_title2), this.getString(R.string.explain_contents2),R.raw.ex_clothes));
+            data.add(new ExplainBean(this.getString(R.string.explain_title3), this.getString(R.string.explain_contents3),R.raw.ex_favorite));
 
             adapter = new ExplainAdapter(data);
             viewPager2.setAdapter(adapter);
@@ -133,8 +133,10 @@ public class ExplainActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(ExplainActivity.this, MainActivity.class);
+            SaveSharedPreferences.setFirstVisitUser(ExplainActivity.this, "n");
             startActivity(intent);
             finish();
+
         }
     };
 }

@@ -20,6 +20,7 @@
             >
 
             <LinearLayout
+                android:id="@+id/main_weather_LL"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -122,13 +123,13 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_marginLeft="15dp"
-                         />
+                        />
                     <ImageView
                         android:id="@+id/main_item3"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_marginLeft="15dp"
-                         />
+                        />
                     <ImageView
                         android:id="@+id/main_item4"
                         android:layout_width="50dp"
@@ -147,7 +148,7 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_marginLeft="15dp"
-                        android:src="@drawable/i_b" />
+                        />
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -172,7 +173,7 @@
                     android:textSize="30dp"
                     android:textColor="@color/black"
                     android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="20dp"
                     />
 
                 <androidx.recyclerview.widget.RecyclerView

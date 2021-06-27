@@ -21,6 +21,9 @@ public class Broadcastreceiver extends BroadcastReceiver {
     private static final String TAG = "SmsReceiver";
     private static SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
+    public Broadcastreceiver() {
+    }
+
     @Override
     public void onReceive(Context context, Intent intent) {
         // sms가 오면 onReceive() 가 호출된다. 여기에 처리하는 코드 작성하면 된다.

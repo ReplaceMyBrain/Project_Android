@@ -1,5 +1,6 @@
 package com.aoslec.androidproject.Activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -42,7 +43,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
-public class SignInActivity extends AppCompatActivity {
+public class SignInActivity extends Activity {
 
     ArrayList<User> users;
     String urlAddr;
@@ -298,7 +299,7 @@ public class SignInActivity extends AppCompatActivity {
             etPw.requestFocus();
         } else {
             try {
-                urlAddr = ShareVar.sUrl + "select_find_user_where.jsp?email=" + etEmail.getText().toString();
+                urlAddr = ShareVar.sUrl + "select_find_user_where_email.jsp?email=" + etEmail.getText().toString();
                 Log.v("Message", urlAddr);
 
                 User_NT userNT = new User_NT(SignInActivity.this, urlAddr, "select");
@@ -315,7 +316,6 @@ public class SignInActivity extends AppCompatActivity {
                     SaveSharedPreferences.setPrefPw(SignInActivity.this, users.get(0).getPw());
                     SaveSharedPreferences.setPrefName(SignInActivity.this, users.get(0).getName());
                     SaveSharedPreferences.setPrefPhone(SignInActivity.this, users.get(0).getPhone());
-                    SaveSharedPreferences.setPrefIndate(SignInActivity.this, users.get(0).getIndate());
                     SaveSharedPreferences.setPrefImage(SignInActivity.this, users.get(0).getPhone());
 
                     if (cb_AutoLogin.isChecked()) {

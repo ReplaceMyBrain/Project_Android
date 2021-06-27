@@ -1,4 +1,5 @@
-package com.aoslec.androidproject.AdActivity;
+package com.aoslec.androidproject.Activity;
+
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
@@ -22,7 +23,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import com.aoslec.androidproject.NetworkTask.ImageNetworkTask;
-import com.aoslec.androidproject.NetworkTask.NetworkTask;
+import com.aoslec.androidproject.NetworkTask.NetworkTaskAdmin;
 import com.aoslec.androidproject.R;
 import com.aoslec.androidproject.Share.SaveSharedPreferences;
 import com.aoslec.androidproject.Share.ShareVar;
@@ -34,7 +35,7 @@ import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class AdActivity extends AppCompatActivity {
+public class AdActivity extends Activity {
 
     String urlAddr, sTitle, sUrl, price, email, imageName, simg, imgurlAddr;
     String imgUrl = ShareVar.sUrl;
@@ -153,7 +154,7 @@ public class AdActivity extends AppCompatActivity {
         String result = null;
         Log.v("ggg","result111 = " + result);
         try {
-            NetworkTask networkTask = new NetworkTask(AdActivity.this, urlAddr,"insertAd");
+            NetworkTaskAdmin networkTask = new NetworkTaskAdmin(AdActivity.this, urlAddr,"insertAd");
             Object obj = networkTask.execute().get();
             result = (String)obj;
 

@@ -28,7 +28,7 @@ import com.aoslec.androidproject.Util.GMailSender;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class SignupActivity extends AppCompatActivity {
+public class SignupActivity extends Activity {
     String urlAddr, pinCode;
 
     Counter mobileCounter = new Counter();

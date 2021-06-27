@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -44,7 +45,7 @@ public class Main_WeatherFragment extends Fragment {
     RecyclerView.Adapter hourlyAdapter;
     RecyclerView.Adapter dailyAdapter;
     RecyclerView.LayoutManager hourlylayoutManager,dailylayoutManager;
-    LinearLayout main_GPS;
+    LinearLayout main_GPS, dayLL;
 
 
     ArrayList<CurrentWeatherBean> current_weathers;
@@ -64,7 +65,7 @@ public class Main_WeatherFragment extends Fragment {
     //옷차림 추천
     ClothesSQLite clothesSQLite;
     ArrayList<ClothesBean> clothesBeans = new ArrayList<>();
-    ImageView item1, item2, item3, item4, item5;
+    ImageView item1, item2, item3, item4, item5, item6;
     String sTemp,sItem1, sItem2, sItem3, sItem4, sItem5;
     String url,clothesColor;
 
@@ -82,12 +83,15 @@ public class Main_WeatherFragment extends Fragment {
         item3 = view.findViewById(R.id.main_item3);
         item4 = view.findViewById(R.id.main_item4);
         item5 = view.findViewById(R.id.main_item5);
+        item6 = view.findViewById(R.id.main_item6);
 
 
         url = SaveSharedPreferences.getUrl(getContext());
         clothesColor = SaveSharedPreferences.getClothesColor(getContext());
 
         //////////
+
+        dayLL = view.findViewById(R.id.main_weather_LL);
 
         rvHourWeather=view.findViewById(R.id.main_rvHourWeather);
         rvDailyWeather=view.findViewById(R.id.main_rvDailyWeather);
@@ -138,36 +142,44 @@ public class Main_WeatherFragment extends Fragment {
         GetDailyData();
 
         //옷차림 추천
-       GetClothes();
+        GetClothes();
     }
 
     //옷차림 메소드
     private void GetClothes() {
-
         SQLiteDatabase DB;
-        int iTemp = current_weather.getCurrent_temp();
+
+        int iTemp = Integer.parseInt(main_tvTemp.getText().toString().trim().substring(0,main_tvTemp.getText().toString().trim().length()-1));
 
         Log.v("ggg","iTemp? " + iTemp);
-
         //범위 정해주기
         if (iTemp>=30){
             sTemp = "30º ▲";
+            dayLL.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.color1));
         }else if (iTemp<30 && iTemp>=25){
             sTemp = "25º ~ 30º";
+            dayLL.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.color2));
         }else if (iTemp<25 && iTemp>=20){
             sTemp = "20º ~ 25º";
+            dayLL.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.color3));
         }else if (iTemp<20 && iTemp>=15){
             sTemp = "15º ~ 20º";
+            dayLL.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.color4));
         }else if (iTemp<15 && iTemp>=10){
             sTemp = "10º ~ 15º";
+            dayLL.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.color7));
         }else if (iTemp<10 && iTemp>=5){
             sTemp = "5º ~ 10º";
+            dayLL.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.color8));
         }else if (iTemp<5 && iTemp>=0){
             sTemp = "0º ~ 5º";
+            dayLL.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.color9));
         }else if (iTemp<0 && iTemp>=-5){
             sTemp = "0º ~ -5º";
+            dayLL.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.color10));
         }else if (iTemp<-5){
             sTemp = "-5º ▼";
+            dayLL.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.color11));
         }
 
         Log.v("ggg","sTemp? " + sTemp);
@@ -275,16 +287,22 @@ public class Main_WeatherFragment extends Fragment {
 
             current_weather= current_weathers.get(0);
 
+            //발표용 날씨조작
+//            main_tvTemp.setText(10+"°");
+
             main_tvTemp.setText(Integer.toString(current_weather.getCurrent_temp())+"°");
             main_tvLocation.setText(Location);
 
             int id=current_weather.getCurrent_id();
 
-            if(id>=200&&id<=232) main_laCover.setAnimation(R.raw.thunder_rain);
-            else if(id>=300&&id<=321) main_laCover.setAnimation(R.raw.rainy);
-            else if(id>=500&&id<=531) main_laCover.setAnimation(R.raw.rain);
+            //발표용 날씨조작
+            // int id = 800;
+
+            if(id>=200&&id<=232) {main_laCover.setAnimation(R.raw.thunder_rain); rainItem();}
+            else if(id>=300&&id<=321) {main_laCover.setAnimation(R.raw.rainy);rainItem();}
+            else if(id>=500&&id<=531) {main_laCover.setAnimation(R.raw.rain);rainItem();}
             else if(id>=600&&id<=622) main_laCover.setAnimation(R.raw.snow);
-            else if(id==800) main_laCover.setAnimation(R.raw.sunny);
+            else if(id==800) {main_laCover.setAnimation(R.raw.sunny);sunnyItem();}
             else if(id>=800&&id<=802) main_laCover.setAnimation(R.raw.cloudy_sun);
             else if(id>=803) main_laCover.setAnimation(R.raw.cloudy);
             else main_laCover.setAnimation(R.raw.cloudy);
@@ -293,4 +311,19 @@ public class Main_WeatherFragment extends Fragment {
             e.printStackTrace();
         }
     }
+
+    //날씨별 아이템 추가
+    private void rainItem() {
+        Glide.with(getActivity())
+                .load(url+clothesColor+"ac2.png")
+                .error("")
+                .into(item6);
+    }
+    private void sunnyItem() {
+        Glide.with(getActivity())
+                .load(url+clothesColor+"ac1.png")
+                .error("")
+                .into(item6);
+    }
+
 }

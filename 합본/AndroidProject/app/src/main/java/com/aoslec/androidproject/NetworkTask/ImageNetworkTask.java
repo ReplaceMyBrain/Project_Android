@@ -39,7 +39,7 @@ public class ImageNetworkTask extends AsyncTask<Integer, String, Integer> {
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.setTitle("Status");
         progressDialog.setMessage("Uploading ....");
-        progressDialog.show();
+//        progressDialog.show();
 
     }
 

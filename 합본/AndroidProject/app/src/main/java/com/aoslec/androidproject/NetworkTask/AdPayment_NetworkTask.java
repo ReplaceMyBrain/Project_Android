@@ -40,7 +40,7 @@ public class AdPayment_NetworkTask extends AsyncTask<Integer, String, Object> {
         progressDialog.setProgressStyle(progressDialog.STYLE_SPINNER);
         progressDialog.setTitle("Dialog");
         progressDialog.setMessage("Get.....");
-        progressDialog.show();
+//        progressDialog.show();
     }
     @Override
     protected void onPostExecute(Object o) {
