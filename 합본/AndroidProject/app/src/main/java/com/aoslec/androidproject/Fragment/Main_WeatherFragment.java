@@ -149,7 +149,9 @@ public class Main_WeatherFragment extends Fragment {
     private void GetClothes() {
         SQLiteDatabase DB;
 
-        int iTemp = Integer.parseInt(main_tvTemp.getText().toString().trim().substring(0,main_tvTemp.getText().toString().trim().length()-1));
+       // int iTemp = Integer.parseInt(main_tvTemp.getText().toString().trim().substring(0,main_tvTemp.getText().toString().trim().length()-1));
+
+        int iTemp = 6;
 
         Log.v("ggg","iTemp? " + iTemp);
         //범위 정해주기
@@ -288,15 +290,15 @@ public class Main_WeatherFragment extends Fragment {
             current_weather= current_weathers.get(0);
 
             //발표용 날씨조작
-//            main_tvTemp.setText(10+"°");
+            main_tvTemp.setText(6+"°");
 
-            main_tvTemp.setText(Integer.toString(current_weather.getCurrent_temp())+"°");
+            //main_tvTemp.setText(Integer.toString(current_weather.getCurrent_temp())+"°");
             main_tvLocation.setText(Location);
 
-            int id=current_weather.getCurrent_id();
+            //int id=current_weather.getCurrent_id();
 
             //발표용 날씨조작
-            // int id = 800;
+             int id = 500;
 
             if(id>=200&&id<=232) {main_laCover.setAnimation(R.raw.thunder_rain); rainItem();}
             else if(id>=300&&id<=321) {main_laCover.setAnimation(R.raw.rainy);rainItem();}
