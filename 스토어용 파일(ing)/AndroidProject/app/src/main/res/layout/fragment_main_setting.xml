@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragment.Main_SettingFragment"
+    android:padding="10dp"
+    android:background="@color/white"
+    android:gravity="center"
+    >
+    <LinearLayout
+        android:id="@+id/setting_normalSetting"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="30dp"
+        >
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_setting"
+            android:layout_marginLeft="15dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/normal_tittle"
+            android:layout_marginLeft="15dp"
+            android:textSize="20dp"
+            android:gravity="center|left"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/setting_clothes"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="30dp"
+        >
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_clothes"
+            android:layout_marginLeft="15dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/clothes_title"
+            android:layout_marginLeft="15dp"
+            android:textSize="20dp"
+            android:gravity="center|left"
+            />
+
+    </LinearLayout>
+</LinearLayout>
