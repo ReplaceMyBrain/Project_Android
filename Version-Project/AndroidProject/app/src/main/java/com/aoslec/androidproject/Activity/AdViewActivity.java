@@ -131,7 +131,7 @@ public class AdViewActivity extends Activity {
                 "    </style>"+
                 "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />"+
                 "</head><body>"+
-                "<img src=\""+ ShareVar.sUrl + img + "\" width =\"auto\" height=\"100%\">" +
+                "<img src=\""+ ShareVar.sUrl +"adImage/"+ img + "\" width =\"auto\" height=\"100%\">" +
                 "</body></html>";
         return image;
     }

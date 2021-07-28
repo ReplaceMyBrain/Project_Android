@@ -26,6 +26,7 @@ import com.aoslec.androidproject.Bean.Ad_requestBean;
 import com.aoslec.androidproject.NetworkTask.NetworkTaskAdmin;
 import com.aoslec.androidproject.R;
 import com.aoslec.androidproject.Share.SaveSharedPreferences;
+import com.aoslec.androidproject.Share.ShareVar;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -65,9 +66,7 @@ public class Admin_ApproveFragment extends Fragment {
         listView1 = view.findViewById(R.id.approve_listView);
         cardView = view.findViewById(R.id.approve_card_view);
 
-        String pcIP = SaveSharedPreferences.getUrl(getActivity());
-
-        urlAddr = pcIP + "adApproveSelect.jsp";
+        urlAddr = ShareVar.sUrl + "adApproveSelect.jsp";
         // jsp 만들기
         Log.v("ggg","유알엘 체크 : " + urlAddr);
 

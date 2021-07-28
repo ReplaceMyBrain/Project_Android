@@ -66,11 +66,7 @@ public class AdActivity extends Activity {
         setContentView(R.layout.activity_ad);
         setTitle(getResources().getString(R.string.ad_title));
 
-        String macIP = saveSharedPreferences.getUrl(AdActivity.this);
-
-        email = "project3@naver.com"; // 추후 쉐어프리퍼런스로
-
-        urlAddr = macIP + "adInsert.jsp?";
+        urlAddr = ShareVar.sUrl + "adInsert.jsp?";
 
         radioGroup = findViewById(R.id.register_radio);
         img = findViewById(R.id.register_image);
@@ -134,13 +130,16 @@ public class AdActivity extends Activity {
             }
 
 
-            urlAddr = urlAddr + "email=" + email + "&title=" + sTitle + "&url=" + sUrl + "&price=" + price + "&image=" + simg;
+            urlAddr = urlAddr + "email=" + SaveSharedPreferences.getPrefEmail(AdActivity.this) + "&title=" + sTitle + "&url=" + sUrl + "&price=" + price + "&image=" + simg;
             Log.v("ggg","유알엘 = " + urlAddr);
 
             String result = connectInsertData();
             Log.v("ggg","result = " + result);
             if (result.equals("1")){
-                Toast.makeText(AdActivity.this, sTitle + " 신청 완료.", Toast.LENGTH_SHORT).show();
+                String kakaopayPrice = Integer.toString(Integer.parseInt(price));
+                PayActivity payActivity = new PayActivity(sTitle, kakaopayPrice);
+                Intent intent = new Intent(getApplicationContext(), PayActivity.class);
+                startActivity(intent);
             }else {
                 Toast.makeText(AdActivity.this, "신청에 실패하였습니다.", Toast.LENGTH_SHORT).show();
             }

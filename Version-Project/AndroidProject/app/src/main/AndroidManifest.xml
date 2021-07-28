@@ -39,7 +39,16 @@
         <activity android:name=".Activity.AdminActivity"/>
         <activity android:name=".Activity.AdminApproveSelectAd"/>
         <activity android:name=".Activity.AdminSelectAd" />
-        <activity android:name=".Activity.AdPaymentActicity" />
+        <activity android:name=".Activity.AdPaymentActicity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:host="deeplink"
+                    android:scheme="weather" />
+            </intent-filter>
+        </activity>
         <activity android:name=".Activity.AdUpdateActivity" />
         <activity android:name=".Activity.AdViewActivity" />
         <activity android:name=".Activity.ClothesActivity" />
@@ -57,7 +66,6 @@
         <activity android:name=".Activity.SetNewPwActivity" />
         <activity android:name=".Activity.SignInActivity" />
         <activity android:name=".Activity.SignupActivity" />
-
         <activity android:name=".GoogleMap.MapActivity" />
 
         <meta-data

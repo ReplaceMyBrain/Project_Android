@@ -26,12 +26,12 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0px"
-        android:layout_weight="1">
+        android:layout_weight="0.4">
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/Main_tabLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_alignParentBottom="true"
             app:tabIndicatorGravity="top"
             app:tabIconTint="@color/color6"

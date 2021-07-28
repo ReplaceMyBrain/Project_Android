@@ -26,7 +26,9 @@ import com.aoslec.androidproject.Activity.NormalSettingActivity;
 import com.aoslec.androidproject.Activity.SignInActivity;
 import com.aoslec.androidproject.Activity.AdPaymentActicity;
 import com.aoslec.androidproject.Bean.Ad_PaymentBean;
+import com.aoslec.androidproject.Bean.User;
 import com.aoslec.androidproject.NetworkTask.AdPayment_NetworkTask;
+import com.aoslec.androidproject.NetworkTask.User_NT;
 import com.aoslec.androidproject.R;
 import com.aoslec.androidproject.Share.SaveSharedPreferences;
 import com.aoslec.androidproject.Share.ShareVar;
@@ -44,6 +46,8 @@ public class Main_SettingFragment extends Fragment {
     LinearLayout layout_now, layout_wait, layout_history, layout_cancel;
     LinearLayout login, setting, clothes, ad, admin, profile_layout, AdLL;
     ArrayList<Ad_PaymentBean> ad_paymentBeans;
+    ArrayList<User> users;
+    String urlAddr;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -88,22 +92,9 @@ public class Main_SettingFragment extends Fragment {
                 ad.setVisibility(View.VISIBLE);
             }
 
-            if (SaveSharedPreferences.getPrefImage(getContext()) == null || SaveSharedPreferences.getPrefImage(getContext()).equals("")) {
-                login.setVisibility(View.GONE);
-                profile.setVisibility(View.INVISIBLE);
-                defaultprofile.setBackground(new ShapeDrawable(new OvalShape()));
-                defaultprofile.setClipToOutline(true);
-                defaultprofile.setImageResource(R.drawable.ic_baseline_emoji_emotions_24);
-            }else {
-                login.setVisibility(View.GONE);
-                defaultprofile.setVisibility(View.INVISIBLE);
-                profile.setBackground(new ShapeDrawable(new OvalShape()));
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    profile.setClipToOutline(true);
-                    Glide.with(this).load(SaveSharedPreferences.getPrefImage(getContext())).into(profile);
-                }
+            login.setVisibility(View.GONE);
+            defaultprofile.setVisibility(View.INVISIBLE);
 
-            }
 
         }
 
@@ -131,14 +122,6 @@ public class Main_SettingFragment extends Fragment {
             }
         });
 
-//        email = view.findViewById(R.id.tv_email_setting);
-
-        //profile 이미지를 동그랗게
-
-
-
-        name.setText(SaveSharedPreferences.getPrefName(getContext())+">");
-
         layout_wait.setOnClickListener(layoutClickAction);
         layout_now.setOnClickListener(layoutClickAction);
         layout_history.setOnClickListener(layoutClickAction);
@@ -150,8 +133,24 @@ public class Main_SettingFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-
         ad_countAction();
+
+        if (SaveSharedPreferences.getLoginMethod(getContext()).equals("")) {
+            userData();
+            profile.setBackground(new ShapeDrawable(new OvalShape()));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                profile.setClipToOutline(true);
+                Glide.with(this).load(ShareVar.sUrl+"defaultuser.jpeg").into(profile);
+            }
+        }else {
+            name.setText(SaveSharedPreferences.getPrefName(getContext())+" >");
+            profile.setBackground(new ShapeDrawable(new OvalShape()));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                profile.setClipToOutline(true);
+                Glide.with(this).load(SaveSharedPreferences.getPrefImage(getContext())).into(profile);
+            }
+        }
+
 
         //액션바 타이틀 변경
         FragmentActivity activity = getActivity();
@@ -169,6 +168,23 @@ public class Main_SettingFragment extends Fragment {
             AdLL.setVisibility(View.GONE);
         }
 
+    }
+    private void userData(){
+        try {
+            urlAddr = ShareVar.sUrl + "select_find_user_where_email.jsp?email=" + SaveSharedPreferences.getPrefEmail(getActivity());
+            Log.v("Message", urlAddr);
+
+            User_NT userNT = new User_NT(getActivity(), urlAddr, "select");
+            Object obj = userNT.execute().get();
+            users = (ArrayList<User>) obj;
+            if (ShareVar.login_fail != 0) {
+                ShareVar.login_fail = 0;
+            } else {
+                name.setText(users.get(0).getName()+" >");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 

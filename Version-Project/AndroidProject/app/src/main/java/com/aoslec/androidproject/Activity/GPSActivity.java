@@ -24,6 +24,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -59,6 +61,8 @@ import java.util.Locale;
 public class GPSActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     MenuItem mSearch;
+    EditText menu_search;
+    ImageView menu_searchAction;
 
     private GoogleMap mMap;
     private Marker currentMarker=null;
@@ -107,6 +111,8 @@ public class GPSActivity extends AppCompatActivity implements OnMapReadyCallback
         setTitle("위치검색");
 
         favoriteInfo=new FavoriteInfo(this);
+        menu_search=findViewById(R.id.menu_search);
+        menu_searchAction=findViewById(R.id.menu_searchAction);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
                 WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -270,10 +276,8 @@ public class GPSActivity extends AppCompatActivity implements OnMapReadyCallback
 
                     favoriteInfo.close();
 
-                    Toast.makeText(GPSActivity.this,"Insert OK!",Toast.LENGTH_SHORT).show();
                 }catch(Exception e){
                     e.printStackTrace();
-                    Toast.makeText(GPSActivity.this,"Insert Error!",Toast.LENGTH_SHORT).show();
                 }
                 finish();
             }
@@ -655,7 +659,26 @@ public class GPSActivity extends AppCompatActivity implements OnMapReadyCallback
 
         mSearch=menu.findItem(R.id.location_search);
 
+//        menu_searchAction.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                LocationSearch(menu_search.getText().toString().trim());
+//            }
+//        });
+
         SearchView sv=(SearchView)mSearch.getActionView();
+
+        mSearch.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
+            @Override
+            public boolean onMenuItemActionExpand(MenuItem item) {
+                return true;
+            }
+
+            @Override
+            public boolean onMenuItemActionCollapse(MenuItem item) {
+                return true;
+            }
+        });
 
         sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override

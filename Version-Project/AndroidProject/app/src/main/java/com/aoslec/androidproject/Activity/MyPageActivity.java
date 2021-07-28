@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.viewpager.widget.ViewPager;
@@ -78,21 +79,9 @@ public class MyPageActivity extends Activity {
 
         tv_logout = findViewById(R.id.tv_logout_mypage);
 
-        tv_name.setText(SaveSharedPreferences.getPrefName(MyPageActivity.this));
-        linear2_name.setText(SaveSharedPreferences.getPrefName(MyPageActivity.this));
-        linear2_email.setText(SaveSharedPreferences.getPrefEmail(MyPageActivity.this));
-        linear2_phone.setText(SaveSharedPreferences.getPrefPhone(MyPageActivity.this));
-
 
         //도우 추가수정 > admin 로그인시 광고갯수창 지정
         AdLL = findViewById(R.id.myPage_AdLL);
-
-        //profile 이미지를 동그랗게
-        iv_profile.setBackground(new ShapeDrawable(new OvalShape()));
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-            iv_profile.setClipToOutline(true);
-        if (SaveSharedPreferences.getPrefImage(MyPageActivity.this) != null || SaveSharedPreferences.getPrefImage(MyPageActivity.this) != "")
-            Glide.with(this).load(SaveSharedPreferences.getPrefImage(MyPageActivity.this)).into(iv_profile);
 
         tv_link.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,11 +133,49 @@ public class MyPageActivity extends Activity {
     protected void onResume() {
         super.onResume();
         ad_countAction();
+        if (SaveSharedPreferences.getLoginMethod(MyPageActivity.this).equals("")) {
+            userData();
+            iv_profile.setBackground(new ShapeDrawable(new OvalShape()));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                iv_profile.setClipToOutline(true);
+                Glide.with(this).load(ShareVar.sUrl+"defaultuser.jpeg").into(iv_profile);
+            }
+        }else {
+            tv_name.setText(SaveSharedPreferences.getPrefName(MyPageActivity.this));
+            linear2_name.setText(SaveSharedPreferences.getPrefName(MyPageActivity.this));
+            linear2_email.setText(SaveSharedPreferences.getPrefName(MyPageActivity.this));
+            linear2_phone.setText(SaveSharedPreferences.getPrefPhone(MyPageActivity.this));
+            iv_profile.setBackground(new ShapeDrawable(new OvalShape()));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                iv_profile.setClipToOutline(true);
+                Glide.with(this).load(SaveSharedPreferences.getPrefImage(MyPageActivity.this)).into(iv_profile);
+            }
+        }
 
-        
         //도우 추가수정 > admin 로그인시 광고갯수창 안보임.
         if(SaveSharedPreferences.getPrefEmail(MyPageActivity.this).equals("admin")){
             AdLL.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    private void userData(){
+        try {
+            urlAddr = ShareVar.sUrl + "select_find_user_where_email.jsp?email=" + SaveSharedPreferences.getPrefEmail(MyPageActivity.this);
+            Log.v("Message", urlAddr);
+
+            User_NT userNT = new User_NT(MyPageActivity.this, urlAddr, "select");
+            Object obj = userNT.execute().get();
+            users = (ArrayList<User>) obj;
+            if (ShareVar.login_fail != 0) {
+                ShareVar.login_fail = 0;
+            } else {
+                tv_name.setText(users.get(0).getName());
+                linear2_name.setText(users.get(0).getName());
+                linear2_email.setText(users.get(0).getEmail());
+                linear2_phone.setText(users.get(0).getPhone());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

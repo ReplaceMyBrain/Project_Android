@@ -28,10 +28,14 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import com.aoslec.androidproject.Activity.PayActivity;
 import com.aoslec.androidproject.NetworkTask.ImageNetworkTask;
+import com.aoslec.androidproject.NetworkTask.NetworkTaskAdmin;
 import com.aoslec.androidproject.R;
+import com.aoslec.androidproject.Share.SaveSharedPreferences;
 import com.aoslec.androidproject.Share.ShareVar;
 import com.bumptech.glide.Glide;
 
@@ -49,7 +53,8 @@ public class AdUpdateActivity extends Activity {
     Date newDate;
     SimpleDateFormat format1, format2, format3;
 
-    String urlAddr, imageName, simg;
+    String urlAddr, imageName, simg, imgurlAddr;
+    String imgUrl = ShareVar.sUrl;
 
     WebView wv_image;
     RadioGroup radioGroup;
@@ -97,6 +102,8 @@ public class AdUpdateActivity extends Activity {
         rbtn2 = findViewById(R.id.register_rbtn2_update);
         rbtn3 = findViewById(R.id.register_rbtn3_update);
 
+        etLocation.setVisibility(View.GONE);
+
         ActivityCompat.requestPermissions(AdUpdateActivity.this, new String[]{
                 Manifest.permission.WRITE_EXTERNAL_STORAGE}, MODE_PRIVATE);
 
@@ -120,38 +127,38 @@ public class AdUpdateActivity extends Activity {
         webSettings.setJavaScriptEnabled(true); // JavaScript 사용 가능
         webSettings.setBuiltInZoomControls(true); // 확대 축소 가능
         webSettings.setDisplayZoomControls(false); // 돋보기 없애기
+        wv_image.loadData(htmlData(ad_image), "text/html", "UTF-8");
 
         etTitle.setText(ad_title);
         etUrl.setText(ad_url);
         etLocation.setText(ad_location);
-        wv_image.loadData(htmlData(ad_image), "text/html", "UTF-8");
 
         btn_indate.setOnClickListener(new View.OnClickListener() {
-                                          @Override
-                                          public void onClick(View v) {
+            @Override
+            public void onClick(View v) {
 
-                                              DatePickerDialog dialog = new DatePickerDialog(AdUpdateActivity.this, new DatePickerDialog.OnDateSetListener() {
-                                                  @Override
-                                                  public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                                                      String m;
-                                                      String d;
-                                                      if (1>Integer.toString(month+1).length()) {
-                                                          m = "0"+Integer.toString(month+1);
-                                                      }else {
-                                                          m = Integer.toString(month+1);
-                                                      }
-                                                      if (1>Integer.toString(dayOfMonth).length()) {
-                                                          d = "0"+Integer.toString(dayOfMonth);
-                                                      } else {
-                                                          d = Integer.toString(dayOfMonth);
-                                                      }
-                                                      ad_indate = year + "-" + m + "-" + d + " ";
-                                                      btn_indate.setText(ad_indate);
-                                                  }
-                                              }, Integer.parseInt(ad_indate.substring(0,4)), Integer.parseInt(ad_indate.substring(5,7)) - 1, Integer.parseInt(ad_indate.substring(8,10)));
-                                              dialog.show();
-                                          }
-                                      });
+                DatePickerDialog dialog = new DatePickerDialog(AdUpdateActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        String m;
+                        String d;
+                        if (1>Integer.toString(month+1).length()) {
+                            m = "0"+Integer.toString(month+1);
+                        }else {
+                            m = Integer.toString(month+1);
+                        }
+                        if (1>Integer.toString(dayOfMonth).length()) {
+                            d = "0"+Integer.toString(dayOfMonth);
+                        } else {
+                            d = Integer.toString(dayOfMonth);
+                        }
+                        ad_indate = year + "-" + m + "-" + d + " ";
+                        btn_indate.setText(ad_indate);
+                    }
+                }, Integer.parseInt(ad_indate.substring(0,4)), Integer.parseInt(ad_indate.substring(5,7)) - 1, Integer.parseInt(ad_indate.substring(8,10)));
+                dialog.show();
+            }
+        });
 
 //        btnRegister.setOnClickListener(onClickListener);
 
@@ -176,17 +183,53 @@ public class AdUpdateActivity extends Activity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Integer.parseInt(new_price)>Integer.parseInt(ad_price)) {
-                    String kakaopayPrice = Integer.toString(Integer.parseInt(new_price)-Integer.parseInt(ad_price));
-                    PayActivity pay__activityActivity = new PayActivity(ad_title, kakaopayPrice);
-                    Intent intent = new Intent(getApplicationContext(), pay__activityActivity.getClass());
-                    intent.putExtra("ad_id", ad_id);
+
+                Log.v("ggg","클릭실행");
+
+
+                //이미지업로드 메소스 실행
+                simg = imageName;
+                Log.v("ggg","이미지 명 : " + simg);
+
+                if(simg == null){
+
+                }else {
+                    imgurlAddr = ShareVar.sUrl + "multipartRequest.jsp";
+                    imageUpload();
+                }
+
+
+                urlAddr = urlAddr + "email=" + SaveSharedPreferences.getPrefEmail(AdUpdateActivity.this) + "&title=" + ad_title + "&url=" + ad_url + "&price=" + new_price + "&image=" + simg;
+                Log.v("ggg","유알엘 = " + urlAddr);
+
+                String result = connectInsertData();
+                Log.v("ggg","result = " + result);
+                if (result.equals("1")){
+                    String kakaopayPrice = Integer.toString(Integer.parseInt(new_price));
+                    PayActivity payActivity = new PayActivity(ad_title, kakaopayPrice);
+                    Intent intent = new Intent(getApplicationContext(), PayActivity.class);
                     startActivity(intent);
                 }else {
-                    Toast.makeText(AdUpdateActivity.this, "기간을 줄이시는 경우에는 삭제 후 재 결제 부탁드립니다.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AdUpdateActivity.this, "신청에 실패하였습니다.", Toast.LENGTH_SHORT).show();
                 }
+                finish();
             }
         });
+    }
+
+    private  String connectInsertData(){
+        String result = null;
+        Log.v("ggg","result111 = " + result);
+        try {
+            NetworkTaskAdmin networkTask = new NetworkTaskAdmin(AdUpdateActivity.this, urlAddr,"insertAd");
+            Object obj = networkTask.execute().get();
+            result = (String)obj;
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        Log.v("ggg","result2 = " + result);
+        return result;
     }
 
     private String htmlData(String img){
@@ -204,7 +247,7 @@ public class AdUpdateActivity extends Activity {
                 "    </style>"+
                 "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />"+
                 "</head><body>"+
-                "<img src=\""+ ShareVar.sUrl + img + "\" width =\"auto\" height=\"100%\">" +
+                "<img src=\""+ ShareVar.sUrl +"adImage/"+ img + "\" width =\"auto\" height=\"100%\">" +
                 "</body></html>";
         return image;
     }

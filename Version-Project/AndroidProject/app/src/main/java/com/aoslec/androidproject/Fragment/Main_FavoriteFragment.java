@@ -1,5 +1,6 @@
 package com.aoslec.androidproject.Fragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -33,6 +34,7 @@ import com.aoslec.androidproject.Bean.FavoriteLocationBean;
 import com.aoslec.androidproject.NetworkTask.NetworkTask;
 import com.aoslec.androidproject.R;
 import com.aoslec.androidproject.SQLite.FavoriteInfo;
+import com.aoslec.androidproject.Share.SaveSharedPreferences;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -190,7 +192,7 @@ public class Main_FavoriteFragment extends Fragment {
                 String favoriteLong = favoriteLocationBeans.get(i).getLongitude();
                 String favoriteLocation = favoriteLocationBeans.get(i).getLocation();
 
-                String urlAddr = "https://api.openweathermap.org/data/2.5/onecall?lat=" + favoriteLat + "&lon=" + favoriteLong + "&exclude=minutely&appid=5a19414be68e50e321e070dbbd70b3cf&units=metric ";
+                String urlAddr = "https://api.openweathermap.org/data/2.5/onecall?lat=" + favoriteLat + "&lon=" + favoriteLong + "&exclude=minutely&appid=c24a5f52d6cc5e1d6913bb8cc0550aad&units=metric ";
 
                 NetworkTask networkTask = new NetworkTask(getActivity(), urlAddr, "current");
                 Object obj = networkTask.execute().get();
@@ -247,13 +249,11 @@ public class Main_FavoriteFragment extends Fragment {
 
                 favoriteInfo.close();
 
-                Toast.makeText(getContext(),"Insert OK!",Toast.LENGTH_SHORT).show();
 
                 //새로고침
-                ((MainActivity)getActivity()).refresh();
+//                ((MainActivity)getActivity()).refresh();
             }catch(Exception e){
                 e.printStackTrace();
-                Toast.makeText(getContext(),"Insert Error!",Toast.LENGTH_SHORT).show();
             }
 
         }

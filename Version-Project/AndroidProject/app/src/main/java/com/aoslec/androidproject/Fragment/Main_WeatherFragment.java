@@ -149,9 +149,7 @@ public class Main_WeatherFragment extends Fragment {
     private void GetClothes() {
         SQLiteDatabase DB;
 
-       // int iTemp = Integer.parseInt(main_tvTemp.getText().toString().trim().substring(0,main_tvTemp.getText().toString().trim().length()-1));
-
-        int iTemp = 6;
+        int iTemp = Integer.parseInt(main_tvTemp.getText().toString().trim().substring(0,main_tvTemp.getText().toString().trim().length()-1));
 
         Log.v("ggg","iTemp? " + iTemp);
         //범위 정해주기
@@ -244,7 +242,7 @@ public class Main_WeatherFragment extends Fragment {
 
     private void GetDailyData(){
         try{
-            String urlAddr="https://api.openweathermap.org/data/2.5/onecall?lat="+Lat+"&lon="+Long+"&exclude=minutely&appid=5a19414be68e50e321e070dbbd70b3cf&units=metric ";
+            String urlAddr="https://api.openweathermap.org/data/2.5/onecall?lat="+Lat+"&lon="+Long+"&exclude=minutely&appid=c24a5f52d6cc5e1d6913bb8cc0550aad&units=metric ";
 
             NetworkTask networkTask=new NetworkTask(getActivity(),urlAddr,"daily");
             Object obj=networkTask.execute().get();
@@ -260,7 +258,7 @@ public class Main_WeatherFragment extends Fragment {
 
     private void GetHourlyData(){
         try{
-            String urlAddr="https://api.openweathermap.org/data/2.5/onecall?lat="+Lat+"&lon="+Long+"&exclude=minutely&appid=5a19414be68e50e321e070dbbd70b3cf&units=metric ";
+            String urlAddr="https://api.openweathermap.org/data/2.5/onecall?lat="+Lat+"&lon="+Long+"&exclude=minutely&appid=c24a5f52d6cc5e1d6913bb8cc0550aad&units=metric ";
 
             NetworkTask networkTask=new NetworkTask(getActivity(),urlAddr,"hourly");
             Object obj=networkTask.execute().get();
@@ -279,7 +277,7 @@ public class Main_WeatherFragment extends Fragment {
         main_tvLocation=getActivity().findViewById(R.id.main_tvLocation);
         main_laCover=getActivity().findViewById(R.id.main_laCover);
         try{
-            String urlAddr="https://api.openweathermap.org/data/2.5/onecall?lat="+Lat+"&lon="+Long+"&exclude=minutely&appid=5a19414be68e50e321e070dbbd70b3cf&units=metric ";
+            String urlAddr="https://api.openweathermap.org/data/2.5/onecall?lat="+Lat+"&lon="+Long+"&exclude=minutely&appid=c24a5f52d6cc5e1d6913bb8cc0550aad&units=metric ";
 
             Log.d("main_weather",urlAddr);
 
@@ -290,15 +288,15 @@ public class Main_WeatherFragment extends Fragment {
             current_weather= current_weathers.get(0);
 
             //발표용 날씨조작
-            main_tvTemp.setText(6+"°");
+//            main_tvTemp.setText(10+"°");
 
-            //main_tvTemp.setText(Integer.toString(current_weather.getCurrent_temp())+"°");
+            main_tvTemp.setText(Integer.toString(current_weather.getCurrent_temp())+"°");
             main_tvLocation.setText(Location);
 
-            //int id=current_weather.getCurrent_id();
+            int id=current_weather.getCurrent_id();
 
             //발표용 날씨조작
-             int id = 500;
+            // int id = 800;
 
             if(id>=200&&id<=232) {main_laCover.setAnimation(R.raw.thunder_rain); rainItem();}
             else if(id>=300&&id<=321) {main_laCover.setAnimation(R.raw.rainy);rainItem();}

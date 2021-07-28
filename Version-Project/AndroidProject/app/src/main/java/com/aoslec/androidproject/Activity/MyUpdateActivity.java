@@ -115,78 +115,78 @@ public class MyUpdateActivity extends Activity {
 //                builder.setNegativeButton("탈퇴하기", new DialogInterface.OnClickListener() {
 //                    @Override
 //                    public void onClick(DialogInterface dialog, int which) {
-                        switch (SaveSharedPreferences.getLoginMethod(MyUpdateActivity.this)) {
-                            case "Kakao" :
-                                UserManagement.getInstance().requestUnlink(new UnLinkResponseCallback() {
-                                    @Override
-                                    public void onFailure(ErrorResult errorResult) { //회원탈퇴 실패 시
-                                        int result = errorResult.getErrorCode();
-                                        if(result == ApiErrorCode.CLIENT_ERROR_CODE) {
-                                            Toast.makeText(MyUpdateActivity.this, "네트워크 연결이 불안정합니다. 다시 시도해 주세요.", Toast.LENGTH_SHORT).show();
-                                        } else {
-                                            Toast.makeText(MyUpdateActivity.this, "회원탈퇴에 실패했습니다. 다시 시도해 주세요.", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                    @Override
-                                    public void onSessionClosed(ErrorResult errorResult) { //로그인 세션이 닫혀있을 시
-                                        //다시 로그인해달라는 Toast 메세지를 띄우고 로그인 창으로 이동함
-                                        Toast.makeText(MyUpdateActivity.this, "로그인 세션이 닫혔습니다. 다시 로그인해 주세요.", Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(MyUpdateActivity.this, SignInActivity.class);
-                                        startActivity(intent);
-                                    }
-                                    @Override
-                                    public void onNotSignedUp() { //가입되지 않은 계정에서 회원탈퇴 요구 시
-                                        //가입되지 않은 계정이라는 Toast 메세지를 띄우고 로그인 창으로 이동함
-                                        Toast.makeText(MyUpdateActivity.this, "가입되지 않은 계정입니다. 다시 로그인해 주세요.", Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(MyUpdateActivity.this, SignInActivity.class);
-                                        startActivity(intent);
-                                    }
-                                    @Override
-                                    public void onSuccess(Long result) { //회원탈퇴에 성공하면
-                                        //"회원탈퇴에 성공했습니다."라는 Toast 메세지를 띄우고 로그인 창으로 이동함
-                                        SaveSharedPreferences.clearAllData(MyUpdateActivity.this);
-                                        Toast.makeText(MyUpdateActivity.this, "회원탈퇴에 성공했습니다.", Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(MyUpdateActivity.this, SignInActivity.class);
-                                        startActivity(intent);
-                                    }
-                                });
-                                break;
-                            case "Google" :
-                                GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                                        .requestEmail()
-                                        .build();
-                                mGoogleSignInClient = GoogleSignIn.getClient(MyUpdateActivity.this, gso);
-                                GoogleSignInAccount gsa = GoogleSignIn.getLastSignedInAccount(MyUpdateActivity.this);
-                                mGoogleSignInClient.revokeAccess();
-                                SaveSharedPreferences.clearAllData(MyUpdateActivity.this);
-                                break;
-                            case "" :
-                                String urlAddr = ShareVar.sUrl + "update_outdate_user.jsp?email=" + SaveSharedPreferences.getPrefEmail(MyUpdateActivity.this);
-                                Log.v("Message", urlAddr);
-                                String result = connectUpdateData(urlAddr);
-                                if (result.equals("1")) {
-                                    SaveSharedPreferences.setPrefAutoLogin(MyUpdateActivity.this, "n");
-                                    SaveSharedPreferences.setPrefIsLogin(MyUpdateActivity.this,"n");
-                                    SaveSharedPreferences.setFirstVisitUser(MyUpdateActivity.this,"y");
-                                    SaveSharedPreferences.setPrefPhone(MyUpdateActivity.this, "");
-                                    SaveSharedPreferences.setPrefEmail(MyUpdateActivity.this, "");
-                                    SaveSharedPreferences.setPrefName(MyUpdateActivity.this, "");
-                                    SaveSharedPreferences.setPrefImage(MyUpdateActivity.this, "");
-                                    SaveSharedPreferences.setPrefPw(MyUpdateActivity.this, "");
-                                    Toast.makeText(MyUpdateActivity.this, "정상적으로 탈퇴 되었습니다.", Toast.LENGTH_SHORT).show();
-                                    SaveSharedPreferences.clearAllData(MyUpdateActivity.this);
-                                    Intent intent = new Intent(MyUpdateActivity.this, SignInActivity.class);
-                                    startActivity(intent);
-                                    MyUpdateActivity.this.finish();
+                switch (SaveSharedPreferences.getLoginMethod(MyUpdateActivity.this)) {
+                    case "Kakao" :
+                        UserManagement.getInstance().requestUnlink(new UnLinkResponseCallback() {
+                            @Override
+                            public void onFailure(ErrorResult errorResult) { //회원탈퇴 실패 시
+                                int result = errorResult.getErrorCode();
+                                if(result == ApiErrorCode.CLIENT_ERROR_CODE) {
+                                    Toast.makeText(MyUpdateActivity.this, "네트워크 연결이 불안정합니다. 다시 시도해 주세요.", Toast.LENGTH_SHORT).show();
                                 } else {
-                                    Toast.makeText(MyUpdateActivity.this, "탈퇴 실패되었습니다.", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(MyUpdateActivity.this, "회원탈퇴에 실패했습니다. 다시 시도해 주세요.", Toast.LENGTH_SHORT).show();
                                 }
-                                break;
-                            default:
-                                break;
+                            }
+                            @Override
+                            public void onSessionClosed(ErrorResult errorResult) { //로그인 세션이 닫혀있을 시
+                                //다시 로그인해달라는 Toast 메세지를 띄우고 로그인 창으로 이동함
+                                Toast.makeText(MyUpdateActivity.this, "로그인 세션이 닫혔습니다. 다시 로그인해 주세요.", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(MyUpdateActivity.this, SignInActivity.class);
+                                startActivity(intent);
+                            }
+                            @Override
+                            public void onNotSignedUp() { //가입되지 않은 계정에서 회원탈퇴 요구 시
+                                //가입되지 않은 계정이라는 Toast 메세지를 띄우고 로그인 창으로 이동함
+                                Toast.makeText(MyUpdateActivity.this, "가입되지 않은 계정입니다. 다시 로그인해 주세요.", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(MyUpdateActivity.this, SignInActivity.class);
+                                startActivity(intent);
+                            }
+                            @Override
+                            public void onSuccess(Long result) { //회원탈퇴에 성공하면
+                                //"회원탈퇴에 성공했습니다."라는 Toast 메세지를 띄우고 로그인 창으로 이동함
+                                SaveSharedPreferences.clearAllData(MyUpdateActivity.this);
+                                Toast.makeText(MyUpdateActivity.this, "회원탈퇴에 성공했습니다.", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(MyUpdateActivity.this, SignInActivity.class);
+                                startActivity(intent);
+                            }
+                        });
+                        break;
+                    case "Google" :
+                        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                                .requestEmail()
+                                .build();
+                        mGoogleSignInClient = GoogleSignIn.getClient(MyUpdateActivity.this, gso);
+                        GoogleSignInAccount gsa = GoogleSignIn.getLastSignedInAccount(MyUpdateActivity.this);
+                        mGoogleSignInClient.revokeAccess();
+                        SaveSharedPreferences.clearAllData(MyUpdateActivity.this);
+                        break;
+                    case "" :
+                        String urlAddr = ShareVar.sUrl + "update_outdate_user.jsp?email=" + SaveSharedPreferences.getPrefEmail(MyUpdateActivity.this);
+                        Log.v("Message", urlAddr);
+                        String result = connectUpdateData(urlAddr);
+                        if (result.equals("1")) {
+                            SaveSharedPreferences.setPrefAutoLogin(MyUpdateActivity.this, "n");
+                            SaveSharedPreferences.setPrefIsLogin(MyUpdateActivity.this,"n");
+                            SaveSharedPreferences.setFirstVisitUser(MyUpdateActivity.this,"y");
+                            SaveSharedPreferences.setPrefPhone(MyUpdateActivity.this, "");
+                            SaveSharedPreferences.setPrefEmail(MyUpdateActivity.this, "");
+                            SaveSharedPreferences.setPrefName(MyUpdateActivity.this, "");
+                            SaveSharedPreferences.setPrefImage(MyUpdateActivity.this, "");
+                            SaveSharedPreferences.setPrefPw(MyUpdateActivity.this, "");
+                            Toast.makeText(MyUpdateActivity.this, "정상적으로 탈퇴 되었습니다.", Toast.LENGTH_SHORT).show();
+                            SaveSharedPreferences.clearAllData(MyUpdateActivity.this);
+                            Intent intent = new Intent(MyUpdateActivity.this, SignInActivity.class);
+                            startActivity(intent);
+                            MyUpdateActivity.this.finish();
+                        } else {
+                            Toast.makeText(MyUpdateActivity.this, "탈퇴 실패되었습니다.", Toast.LENGTH_SHORT).show();
                         }
-                        Intent intent = new Intent(MyUpdateActivity.this, SignInActivity.class);
-                        startActivity(intent);
+                        break;
+                    default:
+                        break;
+                }
+                Intent intent = new Intent(MyUpdateActivity.this, SignInActivity.class);
+                startActivity(intent);
 //                    }
 //                });
 //                builder.setPositiveButton("취소", new DialogInterface.OnClickListener() {
@@ -247,10 +247,8 @@ public class MyUpdateActivity extends Activity {
         String result = connectUpdateData(urlAddr);
         if (result.equals("1")) {
             SaveSharedPreferences.setPrefAutoLogin(MyUpdateActivity.this, "n");
+            SaveSharedPreferences.setPrefPw(MyUpdateActivity.this, new1);
             Toast.makeText(MyUpdateActivity.this, "비밀번호가 변경 되었습니다.", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(MyUpdateActivity.this, SignInActivity.class);
-            startActivity(intent);
-            finish();
         } else {
             Toast.makeText(MyUpdateActivity.this, "변경 실패되었습니다.", Toast.LENGTH_SHORT).show();
         }

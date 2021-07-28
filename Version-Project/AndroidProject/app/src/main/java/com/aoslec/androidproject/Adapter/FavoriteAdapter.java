@@ -1,7 +1,9 @@
 package com.aoslec.androidproject.Adapter;
 
+import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
@@ -68,7 +70,9 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
                         SaveSharedPreferences.setLocation(convertView.getContext(), data.get(position).getLocation());
                     }
 
-                    Toast.makeText(convertView.getContext(),"클릭됨!",Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(mcontext, MainActivity.class);
+                    mcontext.startActivity(intent);
+                    ((Activity)mcontext).finish();
 
                 }
             });
@@ -94,12 +98,15 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
                             String query2 = "UPDATE favorite set heart='N' where latitude='" + lat + "' and longitude='"+Long+"';";
                             DB.execSQL(query2);
                             favorite_current_heart.setImageResource(R.drawable.ic_favorite);
-                            ((MainActivity)mcontext).refresh();
+                            Intent intent = new Intent(mcontext, MainActivity.class);
+                            mcontext.startActivity(intent);
+                            ((Activity)mcontext).finish();
                         }
                         if(heart.equals("N")){
                             String query2 = "UPDATE favorite set heart='Y' where latitude='" + lat + "' and longitude='"+Long+"';";
                             DB.execSQL(query2);
                             favorite_current_heart.setImageResource(R.drawable.ic_favorite_red);
+
                         }
                     }
 

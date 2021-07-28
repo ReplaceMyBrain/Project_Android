@@ -12,6 +12,6 @@ public class ShareVar {
     //로그인 실패
     public static int login_fail = 0;
 
-    public static String code_context = "signup";
+    public static String code_context = "";
 
 }

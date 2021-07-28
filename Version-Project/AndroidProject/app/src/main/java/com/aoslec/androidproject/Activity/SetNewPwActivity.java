@@ -32,7 +32,7 @@ public class SetNewPwActivity extends AppCompatActivity {
     Context mContext;
     Intent intent;
 
-    String userId;
+    String email;
     String pw1, pw2;
 
     @Override
@@ -41,10 +41,6 @@ public class SetNewPwActivity extends AppCompatActivity {
         setContentView(R.layout.activity_set_new_pw);
 
         mContext = this;
-        sharedPreferences = getSharedPreferences("FindAccountUserId", Context.MODE_PRIVATE);
-        userId = sharedPreferences.getString("userId", null);
-
-        Log.v(TAG, userId);
 
         findPwNewPw = findViewById(R.id.findpw_check_edittext1);
         findPwNewPwCheck = findViewById(R.id.findpw_check_edittext2);
@@ -53,6 +49,8 @@ public class SetNewPwActivity extends AppCompatActivity {
 
         newPwSubmitBtn = findViewById(R.id.findpw_check_button);
         newPwSubmitBtn.setOnClickListener(newPw);
+        Intent intent = getIntent();
+        email = intent.getStringExtra("email");
 
     }
 
@@ -96,7 +94,7 @@ public class SetNewPwActivity extends AppCompatActivity {
     }
 
     private void passwordChange(String new1, String new2) {
-        String urlAddr = ShareVar.sUrl + "update_pw_user.jsp?email=" + userId + "&pw="+new1;
+        String urlAddr = ShareVar.sUrl + "update_pw_user.jsp?email=" + email + "&pw="+new1;
         Log.v("Message", urlAddr);
         String result = connectUpdateData(urlAddr);
         if (result.equals("1")) {

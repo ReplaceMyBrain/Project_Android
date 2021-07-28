@@ -1,5 +1,6 @@
 package com.aoslec.androidproject.Adapter;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
@@ -79,6 +80,7 @@ public class FavoriteHistoryAdapter extends RecyclerView.Adapter<FavoriteHistory
 
                         Intent intent = new Intent(mcontext, MainActivity.class);
                         mcontext.startActivity(intent);
+                        ((Activity)mcontext).finish();
                     }
                 }
             });
@@ -102,7 +104,6 @@ public class FavoriteHistoryAdapter extends RecyclerView.Adapter<FavoriteHistory
                             String query2 = "UPDATE favorite set heart='N' where id='" + id + "';";
                             DB.execSQL(query2);
                             history_heart.setImageResource(R.drawable.ic_favorite);
-
                         }
                         if(heart.equals("N")){
                             String query2 = "UPDATE favorite set heart='Y' where id='" + id + "';";
@@ -115,7 +116,7 @@ public class FavoriteHistoryAdapter extends RecyclerView.Adapter<FavoriteHistory
 
                             Intent intent = new Intent(mcontext, MainActivity.class);
                             mcontext.startActivity(intent);
-
+                            ((Activity)mcontext).finish();
                         }
                     }
 

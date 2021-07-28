@@ -220,21 +220,18 @@ public class IdPwActivity extends Activity implements View.OnClickListener {
             case R.id.findpw_phone_edittext:
                 break;
             case  R.id.findpw_pin_button:
-                if (findIdMobileCounter.getText() == "00:00"){
-                    Toast.makeText(this, "인증 시간이 초과되었습니다.",Toast.LENGTH_SHORT).show();
-                } else {
-                    findpw_pin_check.setVisibility(View.INVISIBLE);
-                    Log.d(TAG,"인증번호 : " + pinCode );
-                    String userCode = findpw_phone_pin.getText().toString();
-                    Log.d(TAG, "입력코드 : " + userCode);
-                    if (!userCode.equals(pinCode)){
-                        Log.d(TAG,"인증번호 불일치"+ userCode + ":" + pinCode);
-                        findpw_pin_check.setVisibility(View.VISIBLE);
-                    }else {
-                        showToast("인증 성공");
-                        Intent intent = new Intent(IdPwActivity.this, SetNewPwActivity.class);
-                        startActivity(intent);
-                    }
+                findpw_pin_check.setVisibility(View.INVISIBLE);
+                Log.d(TAG,"인증번호 : " + pinCode );
+                String userCode = findpw_phone_pin.getText().toString();
+                Log.d(TAG, "입력코드 : " + userCode);
+                if (userCode.equals(pinCode)){
+                    Intent intent = new Intent(IdPwActivity.this, SetNewPwActivity.class);
+                    intent.putExtra("email", findpw_id_phone_edittext.getText().toString().trim());
+                    startActivity(intent);
+                    finish();
+                }else {
+                    Log.d(TAG,"인증번호 불일치"+ userCode + ":" + pinCode);
+                    findpw_pin_check.setVisibility(View.VISIBLE);
                 }
                 break;
             case R.id.findpw_phone_button:
@@ -259,7 +256,7 @@ public class IdPwActivity extends Activity implements View.OnClickListener {
             findpw_phone_edittext.requestFocus();
         }else {
             try {
-                urlAddr = ShareVar.sUrl + "select_find_user_where.jsp?email=" + checkedEmail;
+                urlAddr = ShareVar.sUrl + "select_find_user_where_email.jsp?email=" + checkedEmail;
                 Log.v(TAG, urlAddr);
                 User_NT userNT = new User_NT(IdPwActivity.this, urlAddr, "select");
                 Object obj = userNT.execute().get();
@@ -269,51 +266,55 @@ public class IdPwActivity extends Activity implements View.OnClickListener {
                     Toast.makeText(IdPwActivity.this, "입력한 이메일을 다시 확인해주세요!", Toast.LENGTH_SHORT).show();
                     errorMsg.setVisibility(View.VISIBLE);
                     ShareVar.login_fail = 0;
-                } else if (checkedEmail.equals(users.get(0).getEmail())) {
-                    Log.d(TAG,checkedEmail + "존재, 전송 시작");
-                    //내부저장소에 입력된 계정 저장 -> 이후 비밀번호 변경 페이지로 전송하기 위한 과정
-                    userIdShared = getSharedPreferences("FindAccountUserId", Context.MODE_PRIVATE);
-                    editor  = userIdShared.edit();
-                    editor.remove("userId");
-                    editor.commit();
-                    editor.putString("userId", checkedEmail);
-                    Log.d(TAG, checkedEmail+"내부 저장소에 저장");
-                    editor.commit();
-                    Log.d(TAG, "내부 저장소 확인" + userIdShared.getString("userId",null));
-                    if (findpwcheck == 0) {
-                        if(findpw_phone_edittext.getText().toString().trim().equals(users.get(0).getPhone())) {
-                            String number = findpw_phone_edittext.getText().toString().trim();
-                            String phoneNum = "+82 " + number.substring(1);
-                            Log.d(TAG, "인증번호 보낼 핸드폰 번호 확인 : " + phoneNum);
-                            getPwWithMobile(phoneNum);
-                        }else {
-                            Toast.makeText(IdPwActivity.this, "입력한 전화번호를 다시 확인해주세요!", Toast.LENGTH_SHORT).show();
-                        }
-                    } else {
-                        Toast.makeText(IdPwActivity.this, "입력한 이메일을 다시 확인해주세요!", Toast.LENGTH_SHORT).show();
-                    }
-                    if (findpwcheck == 1){
+                } else if (findpw_phone_edittext.getText().toString().trim().equals(users.get(0).getPhone())) {
+                    if (findpw_phone_edittext.getText().toString().trim().equals(users.get(0).getPhone())) {
+                        String number = findpw_phone_edittext.getText().toString().trim();
+                        String phoneNum = "+82 " + number.substring(1);
+                        Log.d(TAG, "인증번호 보낼 핸드폰 번호 확인 : " + phoneNum);
+                        getPwWithMobile(phoneNum);
                         MailTread mailTread = new MailTread(checkedEmail, IdPwActivity.this);
                         mailTread.start();
                         pinCode = mailTread.pinCodeReturn();
-                        //이메일 전송하면 무조건 꺼짐
-                        if (ShareVar.login_fail == 0) {
-//                            mobileCounter.stopCounter(findIdMobileCounter);
-//                            mobileCounter.countDownTimer(findIdMobileCounter);
-//                            mobileCounter.countDownTimer(findIdMobileCounter).start();
-//                            findpw_phone_pin.setEnabled(true);
-//                            findpw_pin_button.setEnabled(true);
-//                            mobileCounter.countDownTimer(findIdMobileCounter).start();
-                        }else {
-                            Toast.makeText(IdPwActivity.this, "입력한 이메일을 다시 확인해주세요!", Toast.LENGTH_SHORT).show();
-//                            errorMsg.setVisibility(View.VISIBLE);
-                            ShareVar.login_fail = 0;
-                        }
+                    } else {
+                        Toast.makeText(IdPwActivity.this, "입력한 전화번호를 다시 확인해주세요!", Toast.LENGTH_SHORT).show();
                     }
-                } else {
-                    Toast.makeText(IdPwActivity.this, "입력한 이메일을 다시 확인해주세요!", Toast.LENGTH_SHORT).show();
-                    errorMsg.setVisibility(View.VISIBLE);
-                    ShareVar.login_fail = 0;
+//                    Log.d(TAG,checkedEmail + "존재, 전송 시작");
+//                    //내부저장소에 입력된 계정 저장 -> 이후 비밀번호 변경 페이지로 전송하기 위한 과정
+//                    userIdShared = getSharedPreferences("FindAccountUserId", Context.MODE_PRIVATE);
+//                    editor  = userIdShared.edit();
+//                    editor.remove("userId");
+//                    editor.commit();
+//                    editor.putString("userId", checkedEmail);
+//                    Log.d(TAG, checkedEmail+"내부 저장소에 저장");
+//                    editor.commit();
+//                    Log.d(TAG, "내부 저장소 확인" + userIdShared.getString("userId",null));
+//                    if (findpwcheck == 0) {
+//
+//                    } else {
+//                        Toast.makeText(IdPwActivity.this, "입력한 이메일을 다시 확인해주세요!", Toast.LENGTH_SHORT).show();
+//                    }
+//                    if (findpwcheck == 1){
+//                        MailTread mailTread = new MailTread(checkedEmail, IdPwActivity.this);
+//                        mailTread.start();
+//                        pinCode = mailTread.pinCodeReturn();
+//                        //이메일 전송하면 무조건 꺼짐
+//                        if (ShareVar.login_fail == 0) {
+////                            mobileCounter.stopCounter(findIdMobileCounter);
+////                            mobileCounter.countDownTimer(findIdMobileCounter);
+////                            mobileCounter.countDownTimer(findIdMobileCounter).start();
+////                            findpw_phone_pin.setEnabled(true);
+////                            findpw_pin_button.setEnabled(true);
+////                            mobileCounter.countDownTimer(findIdMobileCounter).start();
+//                        }else {
+//                            Toast.makeText(IdPwActivity.this, "입력한 이메일을 다시 확인해주세요!", Toast.LENGTH_SHORT).show();
+////                            errorMsg.setVisibility(View.VISIBLE);
+//                            ShareVar.login_fail = 0;
+//                        }
+//                    }
+//                } else {
+//                    Toast.makeText(IdPwActivity.this, "입력한 이메일을 다시 확인해주세요!", Toast.LENGTH_SHORT).show();
+//                    errorMsg.setVisibility(View.VISIBLE);
+//                    ShareVar.login_fail = 0;
                 }
             }catch (Exception e){
                 e.printStackTrace();

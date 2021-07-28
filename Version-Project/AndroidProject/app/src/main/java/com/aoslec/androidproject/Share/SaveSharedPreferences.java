@@ -51,7 +51,7 @@ public class SaveSharedPreferences {
 
     //값을 불러올때 사용
     public static String getLangMethod(Context ctx) {
-        return getSharedPreferences(ctx).getString(lang, "en");
+        return getSharedPreferences(ctx).getString(lang, "ko");
     }
 
 

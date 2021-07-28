@@ -99,7 +99,6 @@ public class Ad_PaymentAdapter extends BaseAdapter {
 
 
         private String htmlData(String img){
-
             String image = "<html><head><style type=\"text/css\">\n" +
                     "img {\n" +
                     " position: absolute;" +
@@ -113,7 +112,7 @@ public class Ad_PaymentAdapter extends BaseAdapter {
                     "    </style>"+
                     "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />"+
                     "</head><body>"+
-                    "<img src=\""+ ShareVar.sUrl + img + "\" width =\"auto\" height=\"100%\">" +
+                    "<img src=\""+ ShareVar.sUrl +"adImage/"+ img + "\" width =\"auto\" height=\"100%\">" +
                     "</body></html>";
             return image;
         }

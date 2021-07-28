@@ -304,7 +304,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="정보 변경하기 >"
-                        android:textColor="@color/color5" />
+                        android:textColor="#00BCD4" />
                 </LinearLayout>
             </FrameLayout>
         </LinearLayout>

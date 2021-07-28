@@ -145,6 +145,7 @@ public class SignInActivity extends Activity {
 
     }
 
+
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -316,7 +317,6 @@ public class SignInActivity extends Activity {
                     SaveSharedPreferences.setPrefPw(SignInActivity.this, users.get(0).getPw());
                     SaveSharedPreferences.setPrefName(SignInActivity.this, users.get(0).getName());
                     SaveSharedPreferences.setPrefPhone(SignInActivity.this, users.get(0).getPhone());
-                    SaveSharedPreferences.setPrefImage(SignInActivity.this, users.get(0).getPhone());
 
                     if (cb_AutoLogin.isChecked()) {
                         SaveSharedPreferences.setPrefAutoLogin(SignInActivity.this, "y");

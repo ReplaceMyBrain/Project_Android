@@ -1,5 +1,3 @@
-package com.aoslec.androidproject.Util;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -20,9 +18,6 @@ public class Broadcastreceiver extends BroadcastReceiver {
 
     private static final String TAG = "SmsReceiver";
     private static SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-
-    public Broadcastreceiver() {
-    }
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -49,7 +44,7 @@ public class Broadcastreceiver extends BroadcastReceiver {
 
 
             // 해당 내용을 모두 합쳐서 액티비티로 보낸다.
-            Log.d(TAG, "received : "+SaveSharedPreferences.getPrefPhone(context)+"/"+sender+"/"+contents.substring(0, 22)+"/"+ShareVar.code_context);
+            Log.d(TAG, "received : "+ SaveSharedPreferences.getPrefPhone(context)+"/"+sender+"/"+contents.substring(0, 22)+"/"+ShareVar.code_context);
             switch (ShareVar.code_context) {
                 case "signup" :
                     sendToActivity(context, contents.substring(22), "signup");

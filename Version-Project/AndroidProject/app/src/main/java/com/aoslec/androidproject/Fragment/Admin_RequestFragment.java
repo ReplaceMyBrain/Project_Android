@@ -22,6 +22,7 @@ import com.aoslec.androidproject.Bean.Ad_requestBean;
 import com.aoslec.androidproject.NetworkTask.NetworkTaskAdmin;
 import com.aoslec.androidproject.R;
 import com.aoslec.androidproject.Share.SaveSharedPreferences;
+import com.aoslec.androidproject.Share.ShareVar;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -60,8 +61,7 @@ public class Admin_RequestFragment extends Fragment {
 
         listView1 = view.findViewById(R.id.request_listview1);
 
-        String pcIP = SaveSharedPreferences.getUrl(getActivity());
-        urlAddr = pcIP + "adRequestSelect.jsp";
+        urlAddr = ShareVar.sUrl + "adRequestSelect.jsp";
         Log.v("ggg","유알엘 : " + urlAddr);
 
 

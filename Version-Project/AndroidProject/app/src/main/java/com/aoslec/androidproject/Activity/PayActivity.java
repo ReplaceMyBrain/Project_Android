@@ -1,9 +1,11 @@
 package com.aoslec.androidproject.Activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -35,6 +37,8 @@ public class PayActivity extends Activity {
 
     // 웹 뷰
     WebView webView;
+    public Context mContext;
+
 
     // json 파싱
     Gson gson;
@@ -66,11 +70,15 @@ public class PayActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pay);
 
+
+
         // 초기화
         requestQueue = Volley.newRequestQueue(getApplicationContext());
         myWebViewClient = new MyWebViewClient();
         webView = findViewById(R.id.webView);
         gson = new Gson();
+
+        mContext = this.getApplicationContext();
 
         // 웹 뷰 설정
         webView.getSettings().setJavaScriptEnabled(true);
@@ -126,9 +134,9 @@ public class PayActivity extends Activity {
                 params.put("quantity", "1"); // 상품 수량
                 params.put("total_amount", productPrice); // 상품 총액
                 params.put("tax_free_amount", "0"); // 상품 비과세
-                params.put("approval_url", ShareVar.sUrl+"success.png"); // 결제 성공시 돌려 받을 url 주소
-                params.put("cancel_url", ShareVar.sUrl+"cancel.png"); // 결제 취소시 돌려 받을 url 주소
-                params.put("fail_url", ShareVar.sUrl+"fail.png"); // 결제 실패시 돌려 받을 url 주소
+                params.put("approval_url", ShareVar.sUrl+"paysuccess.jsp"); // 결제 성공시 돌려 받을 url 주소
+                params.put("cancel_url", ShareVar.sUrl+"paycancel.html"); // 결제 취소시 돌려 받을 url 주소
+                params.put("fail_url", ShareVar.sUrl+"payfail.html"); // 결제 실패시 돌려 받을 url 주소
                 return params;
             }
 
@@ -196,5 +204,28 @@ public class PayActivity extends Activity {
             view.loadUrl(url);
             return false;
         }
+    }
+    private class WebViewClientClass extends WebViewClient {
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            if (url.startsWith("app://")) {
+                Intent intent = new Intent(mContext.getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                return true;
+            }
+            else {
+                view.loadUrl(url);
+                return true;
+            }
+        }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK) && webView.canGoBack()) {
+            webView.goBack();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
